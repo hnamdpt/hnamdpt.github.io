@@ -532,7 +532,12 @@ if(!m&&!n){c.AddContact(l),l.m_flags|=box2d.b2ContactFlag.e_islandFlag;var o=k.o
 		                }
 
 		            }
-
+		            if(!game.input.activePointer.isDown){
+		            	if(disJoint){
+		            			game.physics.box2d.world.DestroyJoint(disJoint);
+		            			isUp=true;
+		            	}
+		            }
 		            rope.rotation = game.math.angleBetween(rope.x, rope.y, target.x, target.y) - Math.PI / 2;
 		            rope.height =  game.math.distance(rope.x, rope.y, target.x, target.y);
 		        }
@@ -1023,7 +1028,12 @@ if(!m&&!n){c.AddContact(l),l.m_flags|=box2d.b2ContactFlag.e_islandFlag;var o=k.o
 		                }
 
 		            }
-
+		            if(!game.input.activePointer.isDown){
+		            	if(disJoint){
+		            			game.physics.box2d.world.DestroyJoint(disJoint);
+		            			isUp=true;
+		            	}
+		            }
 		            rope.rotation = game.math.angleBetween(rope.x, rope.y, target.x, target.y) - Math.PI / 2;
 		            rope.height =  game.math.distance(rope.x, rope.y, target.x, target.y);
 		        }
