@@ -1045,6 +1045,7 @@ if(!m&&!n){c.AddContact(l),l.m_flags|=box2d.b2ContactFlag.e_islandFlag;var o=k.o
 
 	          		game.input.onDown.add(this.mouseDown, this);
 	          		game.input.onUp.add(this.mouseUp, this);
+
 				},
 				render: function() {
 				 // game.debug.box2dWorld();	
@@ -1112,6 +1113,7 @@ if(!m&&!n){c.AddContact(l),l.m_flags|=box2d.b2ContactFlag.e_islandFlag;var o=k.o
 					isShowTutorial =true;
 				},
 				mouseDown(){
+					game.paused==false;
 					if(isStartGame&&!isEndGame){
 						isUp=false;
 						game.physics.box2d.gravity.y = 700*dpr;
@@ -1157,7 +1159,7 @@ if(!m&&!n){c.AddContact(l),l.m_flags|=box2d.b2ContactFlag.e_islandFlag;var o=k.o
 						game.physics.box2d.world.DestroyJoint(disJoint);
 					    // player.body.velocity.y = -150;
 					    isUp=true;
-					    	rope.visible=false;
+					    rope.visible=false;
 					}
 				},
 				finishCallback(){
