@@ -386,6 +386,8 @@
 				},	
 				update(){
 					  game.input.onDown.add(this.mouseDown, this);
+					   game.input.onUp.add(this.mouseUp, this);
+
 					  	if(line){
 					  			game.world.bringToTop(line);
 					  	}
@@ -402,18 +404,31 @@
 								// game.world.bringToTop(picture);
 								// game.world.bringToTop(notice);
 							}
+							if(characters[i].body.input.pointerOver() ){
+								// result +=characters[i].character;
+								// textResult.setText(result);
+								// console.log("ds");
+							}
 							if(characters[i].body.input.pointerOver() && game.input.activePointer.isDown){
+								mousePoint.x = characters[i].body.x;
+								mousePoint.y = characters[i].body.y;
+
+								characters[i].body.inputEnabled = false;
+								if(!isClickCharacter){
+										isClickCharacter=true;
+								}
 								if(characters[i].clicked==false&&isClickCharacter==true){
 									characters[i].clicked=true;
-									// if(line){
-									// 	line.rotation = game.math.angleBetween(line.x, line.y,characters[i].body.x,characters[i].body.y) - Math.PI / 2;
-			      //    					line.height =  game.math.distance(line.x, line.y, characters[i].body.x, characters[i].body.y);
-									// }
+									if(line){
+										line.rotation = game.math.angleBetween(line.x, line.y,characters[i].body.x,characters[i].body.y) - Math.PI / 2;
+			         					line.height =  game.math.distance(line.x, line.y, characters[i].body.x, characters[i].body.y);
+									}
 									line = createAsprite(game.width/2,game.height/2,"line",0.5,1);
 									line.anchor.setTo(0.5,0);
 									var line_ratio = line.width/(game.width/40);
 									line.scale.setTo(1/line_ratio);
 									line.visible=false;
+									line.height = 0;
 									line.reset(characters[i].body.world.x,characters[i].body.world.y);
 									characters[i].circle_c.visible =true;
 									lines.push(line);
@@ -422,8 +437,6 @@
 									textResult.setText(result);
 									console.log(result);
 								}
-							}else{
-								characters[i].clicked=false;
 							}
 					}
 					game.world.bringToTop(hand);
@@ -437,207 +450,10 @@
 						// game.world.bringToTop(picture);
 						// game.world.bringToTop(notice);
 					}
-				}
-			}
-			var stamps = [];
-			var level_2 = {
-				preload(){
-
 				},
-				create(){
-					//create background
-					key = "FOX";
-					isTutorial=false;
-					data = ["OX","OF"];
-					lines = [];
-					mousePoint =new Phaser.Point(0,0);
-					startPoint =new Phaser.Point(0,0);
-					isClickCharacter=false;
-					result="";
-					countTutorial=0;
-
-
-					background = game.add.sprite(game.width/2,game.height/2,"background");
-					var backgroundRatio = background.width/(game.width);
-					background.anchor.setTo(0.5);
-					background.scale.setTo(1/backgroundRatio);
-					background.height =  game.height;
-					dark_bg = game.add.graphics();
-			        dark_bg.beginFill(0x000000, 0.5);
-			        dark_bg.drawRect(0, 0, game.width, game.height);
-					book = game.add.sprite(game.width/2,game.height/4,"book");
-					book.anchor.setTo(0.5);
-					var bookRatio = book.width/(game.width);
-					book.scale.setTo(1/bookRatio);
-
-					picture = game.add.sprite(game.width/2,game.height/4-book.height/20,"pic_2");
-					picture.anchor.setTo(0.5);
-					var picRatio = picture.width/(game.width*0.8);
-					picture.scale.setTo(1/picRatio);
-
-					stamp_1 = game.add.sprite(0,0,"stamp_1");
-					var stamp_1Ratio = stamp_1.width/(game.width/4);
-					stamp_1.anchor.setTo(0.5);
-					stamp_1.scale.setTo(1/stamp_1Ratio);
-					stamp_1.angle=85;
-					stamp_1.reset(book.x-book.width/6,book.y+book.height/8);
-
-					stamp_2 = game.add.sprite(0,0,"stamp_2");
-					var stamp_2Ratio = stamp_2.width/(game.width/2.5);
-					stamp_2.anchor.setTo(0.5);
-					stamp_2.scale.setTo(1/stamp_2Ratio);
-					stamp_2.angle=-30;
-					stamp_2.reset(book.x+stamp_2.width/3,book.y-book.height/10);
-
-
-					stamps.push(stamp_1);
-					stamps.push(stamp_2);
-
-					// stamp_3 = game.add.sprite(0,0,"stamp_3");
-					// var stamp_3Ratio = stamp_3.width/(game.width/2.5);
-					// stamp_3.anchor.setTo(0.5);
-					// stamp_3.scale.setTo(1/stamp_3Ratio);
-					// stamp_3.angle=-15;
-					// stamp_3.reset(book.x,book.y-book.height/6);
-
-					//new
-					
-
-			        notice = game.add.sprite(game.width/2,game.height/2,"notice_1");
-			        notice.anchor.setTo(0.5);
-			        var noticeRatio = notice.width/(game.width);
-			        notice.scale.setTo(1/noticeRatio);
-			        notice.visible=false;
-					// create circle
-					circle = game.add.sprite(game.width/2,game.height/2,"circle");
-					var circleRatio = circle.width/(game.width*0.5);
-					circle.anchor.setTo(0.5);
-					circle.scale.setTo(1/circleRatio);
-					circle.reset(circle.x,3/4*game.height);
-					//create book
-					
-					//create charater
-					var character_f = new Character("F");
-					character_f.body.reset(game.width/2,circle.y-circle.height/3);
-
-					var character_g = new Character("X");
-					character_g.body.reset(game.width/2-circle.width/3,circle.y+circle.height/8);
-
-					var character_o = new Character("O");
-					character_o.body.reset(game.width/2+circle.width/3,circle.y+circle.height/8);
-
-					characters.push(character_f);
-					characters.push(character_g);
-					characters.push(character_o);
-
-					game.input.addMoveCallback(mouseOver, this);
-
-				
-				
-					textResult = game.add.text(circle.x,circle.y-circle.height/1.5, "",  { font: "40px Arial", fill: '#ffffff',boundsAlignH: "center", boundsAlignV: "middle"});
-					textResult.setShadow(0, 3, 'rgba(0, 0, 0, 0.8)', 0);
-					textResult.fontWeight = 'bold';
-					// textResult.padding.set(5,10,5,10);
-					textResult.anchor.set(0.5);
-
-					icon_game = game.add.button(game.width*0.9,game.height*0.95,"icon_game");
-				    icon_game.anchor.setTo(0.5);
-				    var ratioIcon = icon_game.width/(game.width/8);
-				    icon_game.scale.setTo(1/ratioIcon);
-				    icon_game.fixedToCamera﻿ ﻿= true;
-				    icon_game.onInputDown.add(function(){
-							window.open(linkDownload)
-					},this);
-
-				    var button_install = game.add.button(0,0,"btn_install");
-						button_install.anchor.setTo(0.5);
-						var btnInstallRatio = button_install.width/(game.width/4);
-						button_install.scale.setTo(1/btnInstallRatio);
-						button_install.reset(button_install.width/1.5,button_install.height/1.5);
-						button_install.onInputDown.add(function(){
-								window.open(linkDownload)
-								
-						},this);
-
-				},
-				update(){
-					 // game.input.onDown.add(this.mouseDown, this);
-					  	if(line){
-					  			game.world.bringToTop(line);
-					  	}
-					  
-
-					for(var i=0;i<characters.length;i++){
-							if(!isEndgame){
-									game.world.bringToTop(characters[i].body);
-							}
-						
-
-							if(countTutorial==3&&!hiddenNotice){
-								
-							}
-							if(characters[i].body.input.pointerOver() && game.input.activePointer.isDown){
-								if(characters[i].clicked==false&&isClickCharacter==true){
-									characters[i].clicked=true;
-									// if(line){
-									// 	line.rotation = game.math.angleBetween(line.x, line.y,characters[i].body.x,characters[i].body.y) - Math.PI / 2;
-			      //    					line.height =  game.math.distance(line.x, line.y, characters[i].body.x, characters[i].body.y);
-									// }
-									line = createAsprite(game.width/2,game.height/2,"line",0.5,1);
-									line.anchor.setTo(0.5,0);
-									var line_ratio = line.width/(game.width/40);
-									line.scale.setTo(1/line_ratio);
-									line.visible=false;
-									line.reset(characters[i].body.world.x,characters[i].body.world.y);
-									characters[i].circle_c.visible =true;
-									lines.push(line);
-									game.world.bringToTop(characters[i].body);
-									result+=characters[i].character;
-									textResult.setText(result);
-									console.log(result);
-								}
-							}
-					}
-					
-				}
-			}
-			var isEndgame=false;
-			class Character{
-				constructor(character){
-					this.character=character;
-					this.create();
-					this.body.inputEnabled = true;
-					this.body.events.onInputDown.add(this.inputDown, this);
-					this.body.events.onInputUp.add(this.inputUp, this);
-					this.clicked=false;
-					this.body.inputEnabled=true;
-				}
-				create(){
-						this.body = createAsprite(0,0,"",0.5,1);
-						this.sprite = createAsprite(0,0,"character_"+this.character,0.5,1);
-						var character_ratio = this.sprite.width/(game.width/9);
-						this.sprite.scale.setTo(1/character_ratio);
-						this.circle_c = createAsprite(0,0,"circle_c",0.5,1);
-						var circlec_ratio = this.circle_c.width/(game.width/7);
-						this.circle_c.scale.setTo(1/circlec_ratio);
-						this.body.addChild(this.circle_c);
-						this.body.addChild(this.sprite);
-						this.circle_c.visible =false;
-
-						// createAmazing();
-					}
-					inputDown(){
-						for(var i=0;i<characters.length;i++){
-							game.world.bringToTop(characters[i].sprite);
-						}
-						if(!isClickCharacter){
-								isClickCharacter=true;
-						}
-					
-						game.world.bringToTop(this.body);
-					}
-					inputUp(){
-						if(isTutorial){
+				mouseUp(){
+					console.log("up");
+					if(isTutorial){
 							if(result==data[0]&&countTutorial==0){
 								createAwesome();
 								arrow_line_2.visible=true;
@@ -743,16 +559,356 @@
 
 						textResult.setText("");
 						result="";
-						game.world.bringToTop(this.sprite);
+						isClickCharacter=false;
+						// game.world.bringToTop(this.sprite);
 						 for(var i=0;i<lines.length;i++){
 						 	lines[i].destroy(true);
-						 	isClickCharacter=false;
 						 }
 						 lines = [];
 						 for(var i=0;i<characters.length;i++){
 						 		characters[i].clicked=false;
 						 		characters[i].circle_c.visible=false;
+						 		characters[i].body.inputEnabled = true;
 						 }
+				}
+			}
+			var stamps = [];
+			var level_2 = {
+				preload(){
+
+				},
+				create(){
+					//create background
+					key = "FOX";
+					isTutorial=false;
+					data = ["OX","OF"];
+					lines = [];
+					mousePoint =new Phaser.Point(0,0);
+					startPoint =new Phaser.Point(0,0);
+					isClickCharacter=false;
+					result="";
+					countTutorial=0;
+					isEndgame=false;
+					characters = [];
+					background = game.add.sprite(game.width/2,game.height/2,"background");
+					var backgroundRatio = background.width/(game.width);
+					background.anchor.setTo(0.5);
+					background.scale.setTo(1/backgroundRatio);
+					background.height =  game.height;
+					dark_bg = game.add.graphics();
+			        dark_bg.beginFill(0x000000, 0.5);
+			        dark_bg.drawRect(0, 0, game.width, game.height);
+					book = game.add.sprite(game.width/2,game.height/4,"book");
+					book.anchor.setTo(0.5);
+					var bookRatio = book.width/(game.width);
+					book.scale.setTo(1/bookRatio);
+
+					picture = game.add.sprite(game.width/2,game.height/4-book.height/20,"pic_2");
+					picture.anchor.setTo(0.5);
+					var picRatio = picture.width/(game.width*0.8);
+					picture.scale.setTo(1/picRatio);
+
+					stamp_1 = game.add.sprite(0,0,"stamp_1");
+					var stamp_1Ratio = stamp_1.width/(game.width/4);
+					stamp_1.anchor.setTo(0.5);
+					stamp_1.scale.setTo(1/stamp_1Ratio);
+					stamp_1.angle=85;
+					stamp_1.reset(book.x-book.width/6,book.y+book.height/8);
+
+					stamp_2 = game.add.sprite(0,0,"stamp_2");
+					var stamp_2Ratio = stamp_2.width/(game.width/2.5);
+					stamp_2.anchor.setTo(0.5);
+					stamp_2.scale.setTo(1/stamp_2Ratio);
+					stamp_2.angle=-30;
+					stamp_2.reset(book.x+stamp_2.width/3,book.y-book.height/10);
+
+
+					stamps.push(stamp_1);
+					stamps.push(stamp_2);
+
+					// stamp_3 = game.add.sprite(0,0,"stamp_3");
+					// var stamp_3Ratio = stamp_3.width/(game.width/2.5);
+					// stamp_3.anchor.setTo(0.5);
+					// stamp_3.scale.setTo(1/stamp_3Ratio);
+					// stamp_3.angle=-15;
+					// stamp_3.reset(book.x,book.y-book.height/6);
+
+					//new
+					
+
+			        notice = game.add.sprite(game.width/2,game.height/2,"notice_1");
+			        notice.anchor.setTo(0.5);
+			        var noticeRatio = notice.width/(game.width);
+			        notice.scale.setTo(1/noticeRatio);
+			        notice.visible=false;
+					// create circle
+					circle = game.add.sprite(game.width/2,game.height/2,"circle");
+					var circleRatio = circle.width/(game.width*0.5);
+					circle.anchor.setTo(0.5);
+					circle.scale.setTo(1/circleRatio);
+					circle.reset(circle.x,3/4*game.height);
+					//create book
+					
+					//create charater
+					var character_f = new Character("F");
+					character_f.body.reset(game.width/2,circle.y-circle.height/3);
+
+					var character_g = new Character("X");
+					character_g.body.reset(game.width/2-circle.width/3,circle.y+circle.height/8);
+
+					var character_o = new Character("O");
+					character_o.body.reset(game.width/2+circle.width/3,circle.y+circle.height/8);
+
+					characters.push(character_f);
+					characters.push(character_g);
+					characters.push(character_o);
+
+					game.input.addMoveCallback(mouseOver, this);
+
+				
+				
+					textResult = game.add.text(circle.x,circle.y-circle.height/1.5, "",  { font: "40px Arial", fill: '#ffffff',boundsAlignH: "center", boundsAlignV: "middle"});
+					textResult.setShadow(0, 3, 'rgba(0, 0, 0, 0.8)', 0);
+					textResult.fontWeight = 'bold';
+					// textResult.padding.set(5,10,5,10);
+					textResult.anchor.set(0.5);
+
+					icon_game = game.add.button(game.width*0.9,game.height*0.95,"icon_game");
+				    icon_game.anchor.setTo(0.5);
+				    var ratioIcon = icon_game.width/(game.width/8);
+				    icon_game.scale.setTo(1/ratioIcon);
+				    icon_game.fixedToCamera﻿ ﻿= true;
+				    icon_game.onInputDown.add(function(){
+							window.open(linkDownload)
+					},this);
+
+				    var button_install = game.add.button(0,0,"btn_install");
+						button_install.anchor.setTo(0.5);
+						var btnInstallRatio = button_install.width/(game.width/4);
+						button_install.scale.setTo(1/btnInstallRatio);
+						button_install.reset(button_install.width/1.5,button_install.height/1.5);
+						button_install.onInputDown.add(function(){
+								window.open(linkDownload)
+								
+						},this);
+
+				},
+				update(){
+						 game.input.onDown.add(this.mouseDown, this);
+					   game.input.onUp.add(this.mouseUp, this);
+
+					  	if(line){
+					  			game.world.bringToTop(line);
+					  	}
+					  
+
+					for(var i=0;i<characters.length;i++){
+							if(!isEndgame){
+									game.world.bringToTop(characters[i].body);
+							}
+						
+
+							if(countTutorial==3&&!hiddenNotice){
+								// game.world.bringToTop(dark_bg);
+								// game.world.bringToTop(picture);
+								// game.world.bringToTop(notice);
+							}
+							if(characters[i].body.input.pointerOver() ){
+								// result +=characters[i].character;
+								// textResult.setText(result);
+								// console.log("ds");
+							}
+							if(characters[i].body.input.pointerOver() && game.input.activePointer.isDown){
+								mousePoint.x = characters[i].body.x;
+								mousePoint.y = characters[i].body.y;
+
+								characters[i].body.inputEnabled = false;
+								if(!isClickCharacter){
+										isClickCharacter=true;
+								}
+								if(characters[i].clicked==false&&isClickCharacter==true){
+									characters[i].clicked=true;
+									if(line){
+										line.rotation = game.math.angleBetween(line.x, line.y,characters[i].body.x,characters[i].body.y) - Math.PI / 2;
+			         					line.height =  game.math.distance(line.x, line.y, characters[i].body.x, characters[i].body.y);
+									}
+									line = createAsprite(game.width/2,game.height/2,"line",0.5,1);
+									line.anchor.setTo(0.5,0);
+									var line_ratio = line.width/(game.width/40);
+									line.scale.setTo(1/line_ratio);
+									line.visible=false;
+									line.height = 0;
+									line.reset(characters[i].body.world.x,characters[i].body.world.y);
+									characters[i].circle_c.visible =true;
+									lines.push(line);
+									game.world.bringToTop(characters[i].body);
+									result+=characters[i].character;
+									textResult.setText(result);
+									console.log(result);
+								}
+							}
+					}
+					game.world.bringToTop(hand);
+					
+				},
+				mouseDown(){
+
+				},
+				mouseUp(){
+					console.log("up");
+					if(isTutorial){
+							if(result==data[0]&&countTutorial==0){
+								createAwesome();
+								arrow_line_2.visible=true;
+								arrow_line_1.visible=false;
+								console.log("oki level1");
+								countTutorial++;
+								game.world.bringToTop(stamp_3);
+								var stamp_3_tween= game.add.tween(stamp_3).to({width:stamp_3.width+stamp_3.width/1.5,height:stamp_3.height+stamp_3.height/1.5,alpha:0},500);
+								stamp_3_tween.start();
+								notice.loadTexture("notice_2");
+							}
+
+							if(result==data[1]&&countTutorial==1){
+								createCool();
+								notice.visible=false;
+								arrow_line_2.visible=true;
+								arrow_line_3.visible=true;
+								console.log("oki level2");
+								countTutorial++;
+								game.world.bringToTop(stamp_2);
+								var stamp_2_tween= game.add.tween(stamp_2).to({width:stamp_2.width+stamp_2.width/2,height:stamp_2.height+stamp_2.height/2,alpha:0},300);
+								stamp_2_tween.start();
+							}
+							if(result==data[2]&&countTutorial==2){
+								if(isTutorial){
+									notice.visible=true;
+									notice.loadTexture("notice_3");
+									notice.reset(game.width/2,game.height/2);
+								}
+
+								arrow_line_2.visible=false;
+								arrow_line_3.visible=false;
+								arrow_line_1.visible=true;
+								arrow_line_4.visible=true;
+								console.log("oki level3");
+								countTutorial++;
+								game.world.bringToTop(stamp_1);
+								var stamp_1_tween= game.add.tween(stamp_1).to({width:stamp_1.width+stamp_1.width,height:stamp_1.height+stamp_1.height,alpha:0},300);
+								stamp_1_tween.start();
+								stamp_1_tween.onComplete.add(function(){
+								game.world.bringToTop(book);
+								game.world.bringToTop(picture);
+								}, this);
+							
+
+							}
+							if(result==data[3]&&countTutorial==3){
+								arrow_line_2.visible=false;
+								arrow_line_3.visible=false;
+								arrow_line_1.visible=false;
+								arrow_line_4.visible=false;
+								countTutorial++;
+								console.log("oki level4");
+
+								createAmazing();
+							}
+						}else{
+							// if(result==data[0]&&countTutorial==0){
+							// 	arrow_line_2.visible=true;
+							// 	arrow_line_1.visible=false;
+							// 	console.log("oki level1");
+							// 	countTutorial++;
+							// 	game.world.bringToTop(stamp_3);
+							// 	var stamp_3_tween= game.add.tween(stamp_3).to({width:stamp_3.width+stamp_3.width/1.5,height:stamp_3.height+stamp_3.height/1.5,alpha:0},500);
+							// 	stamp_3_tween.start();
+							// 	notice.loadTexture("notice_2");
+							// }
+
+							if(data.indexOf(result)!=-1){
+					
+								var index = data.indexOf(result);
+								if(stamps.length>0){
+									var stamp = stamps[0];
+									var stamp_tween= game.add.tween(stamp).to({width:stamp.width+stamp.width,height:stamp.height+stamp.height,alpha:0},300);
+									stamp_tween.start();
+									stamps.splice(0,1);
+									countTutorial++;
+									if(countTutorial==1){
+										createCool();
+									}
+								}else{
+									isEndgame=true;
+									createAmazing_2();
+								}
+
+								data.splice(index,1);
+
+							}
+							if(result==key){
+								isEndgame=true;
+								for(var i=0;i<stamps.length;i++){
+										var stamp = stamps[i];
+									var stamp_tween= game.add.tween(stamp).to({width:stamp.width+stamp.width,height:stamp.height+stamp.height,alpha:0},500);
+									stamp_tween.start();
+								}
+								createAmazing_2();
+
+							}
+							
+						}
+						
+
+						textResult.setText("");
+						result="";
+						isClickCharacter=false;
+						// game.world.bringToTop(this.sprite);
+						 for(var i=0;i<lines.length;i++){
+						 	lines[i].destroy(true);
+						 }
+						 lines = [];
+						 for(var i=0;i<characters.length;i++){
+						 		characters[i].clicked=false;
+						 		characters[i].circle_c.visible=false;
+						 		characters[i].body.inputEnabled = true;
+						 }
+				}
+			}
+			var isEndgame=false;
+			class Character{
+				constructor(character){
+					this.character=character;
+					this.create();
+					this.body.inputEnabled = true;
+					// this.body.events.onInputDown.add(this.inputDown, this);
+					// this.body.events.onInputUp.add(this.inputUp, this);
+					this.clicked=false;
+					// this.body.inputEnabled=true;
+				}
+				create(){
+						this.body = createAsprite(0,0,"",0.5,1);
+						this.sprite = createAsprite(0,0,"character_"+this.character,0.5,1);
+						var character_ratio = this.sprite.width/(game.width/9);
+						this.sprite.scale.setTo(1/character_ratio);
+						this.circle_c = createAsprite(0,0,"circle_c",0.5,1);
+						var circlec_ratio = this.circle_c.width/(game.width/7);
+						this.circle_c.scale.setTo(1/circlec_ratio);
+						this.body.addChild(this.circle_c);
+						this.body.addChild(this.sprite);
+						this.circle_c.visible =false;
+
+						// createAmazing();
+					}
+					inputDown(){
+						for(var i=0;i<characters.length;i++){
+							game.world.bringToTop(characters[i].sprite);
+						}
+					
+					
+						game.world.bringToTop(this.body);
+					}
+					inputUp(){
+						
 
 					}
 
