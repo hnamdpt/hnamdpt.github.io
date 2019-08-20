@@ -16,7 +16,11 @@
 		  width:100vw;
 		  height: 100vh;
 		  background:#fff;
+		  /*Flex-Container*/
 		  display: flex;
+		  /*justify-content: center;*/
+  		/*align-items: center;*/
+ 
 		}
     	
      #game canvas {  
@@ -1340,14 +1344,15 @@
 					background.width = game.width;
 					background.height = game.height;
 					var button_install = game.add.button(0,0,"btn_install");
-					var button_install_ratio = button_install.width/(game.width/4);
+					var button_install_ratio = button_install.width/(game.width/3);
 					button_install.anchor.setTo(0.5);
 					button_install.scale.setTo(1/button_install_ratio);
-					button_install.reset(game.width/2,button_install.height/2);
+					button_install.reset(game.width/2,button_install.height/1.5);
 					button_install.onInputDown.add(function(){
 							dapi.openStoreUrl();
 					},this);
 					
+
 
 
 			 		totalCard =15;
