@@ -219,10 +219,10 @@
 				emitter.makeParticles('Gold_1',0, 250, true, false);
 				emitter.minParticleScale = 0.2*dpr;
    				emitter.maxParticleScale = 0.5*dpr;
-				emitter.gravity = 300;
+				emitter.gravity = 300*dpr;
 
 				scoreUI = game.add.text(game.width/2,game.height*0.03, "0", { font: "20px Arial", fill: "#ed7001", align: "center" });
-				scoreUI.fontSize = 35*dpr + "px";
+				scoreUI.fontSize = 35*dpr*2/3 + "px";
 				scoreUI.anchor.setTo(0.5);
 				scoreUI.strokeThickness = 4;
 				
@@ -250,7 +250,7 @@
 
 				
 				tapTxt = game.add.text(game.width/2,game.height/2, "TAP TO PLAY", { font: "20px Arial", fill: "#ffffff", align: "center" });
-				tapTxt.fontSize = 30*dpr + "px";
+				tapTxt.fontSize = 30*dpr*2/3 + "px";
 				tapTxt.anchor.setTo(0.5);
 				tapTxt.reset(player.body.x,player.body.y-player.sprite.height*1.2);
 				var tapTxt_tween = game.add.tween(tapTxt).to({alpha:0},1500, Phaser.Easing.Linear.None, true, 0, -1, false);
@@ -361,9 +361,9 @@
 								score++;
 								// var scoreUI_tween = game.add.tween(scoreUI).to({width:scoreUI.width*1.2,height:scoreUI.height*1.2},100,Phaser.Easing.Linear.None, true, 0, 0, true);
 
-								scoreUI.fontSize = 42*dpr + "px";
+								scoreUI.fontSize = 42*dpr*2/3 + "px";
 								game.time.events.add(Phaser.Timer.SECOND * 0.2,function(){
-									scoreUI.fontSize = 35*dpr + "px";
+									scoreUI.fontSize = 35*dpr*2/3  + "px";
 								
 							});
 							
@@ -537,26 +537,26 @@
 						bullet.reset(this.body.x,this.body.y-this.sprite.height/2);
 						bullet.inputEnabled = true;
 						bullet.checkWorldBounds = true;
-						bullet.body.velocity.y = -500;
+						bullet.body.velocity.y = -500*dpr;
 						this.lastTimeFire = game.time.now + this.speedBulletRate;
 						bulletGroup.add(bullet);
 						bullet.isColision=false;
 						switch(i){
 							case 0:
-								bullet.body.velocity.y = -500;
-								bullet.body.velocity.x = -40;
+								bullet.body.velocity.y = -500*dpr;
+								bullet.body.velocity.x = -40*dpr;
 							break;
 							case 1:
-								bullet.body.velocity.y = -500;
-								bullet.body.velocity.x = -20;
+								bullet.body.velocity.y = -500*dpr;
+								bullet.body.velocity.x = -20*dpr;
 							break;
 							case 2:
-								bullet.body.velocity.y = -500;
-								bullet.body.velocity.x = 20;
+								bullet.body.velocity.y = -500*dpr;
+								bullet.body.velocity.x = 20*dpr;
 							break;
 							case 3:
-								bullet.body.velocity.y = -500;
-								bullet.body.velocity.x = 40;
+								bullet.body.velocity.y = -500*dpr;
+								bullet.body.velocity.x = 40*dpr;
 							break;
 						}
 					}
@@ -575,31 +575,31 @@
 						bullet.reset(this.body.x,this.body.y-this.sprite.height/2);
 						bullet.inputEnabled = true;
 						bullet.checkWorldBounds = true;
-						bullet.body.velocity.y = -500;
+						bullet.body.velocity.y = -500*dpr;
 						this.lastTimeFire = game.time.now + this.speedBulletRate;
 						bulletGroup.add(bullet);
 						bullet.isColision=false;
 						switch(i){
 							case 0:
-								bullet.body.velocity.y = -500;
-								bullet.body.velocity.x = 40;
+								bullet.body.velocity.y = -500*dpr;
+								bullet.body.velocity.x = 40*dpr;
 							break;
 							case 1:
-								bullet.body.velocity.y = -500;
-								bullet.body.velocity.x =20;
+								bullet.body.velocity.y = -500*dpr;
+								bullet.body.velocity.x =20*dpr;
 							
 							break;
 							case 2:
-								bullet.body.velocity.y = -500;
+								bullet.body.velocity.y = -500*dpr;
 							
 							break;
 							case 3:
-								bullet.body.velocity.y = -500;
-								bullet.body.velocity.x = -20;
+								bullet.body.velocity.y = -500*dpr;
+								bullet.body.velocity.x = -20*dpr;
 							break;
 							case 4:
-								bullet.body.velocity.y = -500;
-									bullet.body.velocity.x = -40;
+								bullet.body.velocity.y = -500*dpr;
+									bullet.body.velocity.x = -40*dpr;
 							break;
 						}
 					}
@@ -617,35 +617,35 @@
 						bullet.reset(this.body.x,this.body.y-this.sprite.height/2);
 						bullet.inputEnabled = true;
 						bullet.checkWorldBounds = true;
-						bullet.body.velocity.y = -500;
+						bullet.body.velocity.y = -500*dpr;
 						this.lastTimeFire = game.time.now + this.speedBulletRate;
 						bulletGroup.add(bullet);
 						bullet.isColision=false;
 						switch(i){
 							case 0:
-								bullet.body.velocity.y = -500;
-								bullet.body.velocity.x = -60;
+								bullet.body.velocity.y = -500*dpr;
+								bullet.body.velocity.x = -60*dpr;
 							break;
 							case 1:
-								bullet.body.velocity.y = -500;
-								bullet.body.velocity.x =-40;
+								bullet.body.velocity.y = -500*dpr;
+								bullet.body.velocity.x =-40*dpr;
 							
 							break;
 							case 2:
-								bullet.body.velocity.y = -500;
-									bullet.body.velocity.x = -20;
+								bullet.body.velocity.y = -500*dpr;
+									bullet.body.velocity.x = -20*dpr;
 							break;
 							case 3:
-								bullet.body.velocity.y = -500;
-								bullet.body.velocity.x = 20;
+								bullet.body.velocity.y = -500*dpr;
+								bullet.body.velocity.x = 20*dpr;
 							break;
 							case 4:
-								bullet.body.velocity.y = -500;
-									bullet.body.velocity.x = 40;
+								bullet.body.velocity.y = -500*dpr;
+									bullet.body.velocity.x = 40*dpr;
 							break;
 							case 5:
-								bullet.body.velocity.y = -500;
-									bullet.body.velocity.x = 60;
+								bullet.body.velocity.y = -500*dpr;
+									bullet.body.velocity.x = 60*dpr;
 							break;
 							
 						}
@@ -665,48 +665,48 @@
 						bullet.reset(this.body.x,this.body.y-this.sprite.height/2);
 						bullet.inputEnabled = true;
 						bullet.checkWorldBounds = true;
-						bullet.body.velocity.y = -500;
+						bullet.body.velocity.y = -500*dpr;
 						this.lastTimeFire = game.time.now + this.speedBulletRate;
 						bulletGroup.add(bullet);
 						bullet.isColision=false;
 						bullet.tint = 0x3cfa09;
 						switch(i){
 							case 0:
-								bullet.body.velocity.y = -700;
-								bullet.body.velocity.x = -80;
+								bullet.body.velocity.y = -700*dpr;
+								bullet.body.velocity.x = -80*dpr;
 							break;
 							case 1:
-								bullet.body.velocity.y = -700;
-								bullet.body.velocity.x =-60;
+								bullet.body.velocity.y = -700*dpr;
+								bullet.body.velocity.x =-60*dpr;
 							
 							break;
 							case 2:
-								bullet.body.velocity.y = -700;
-									bullet.body.velocity.x = -40;
+								bullet.body.velocity.y = -700*dpr;
+									bullet.body.velocity.x = -40*dpr;
 							break;
 							case 3:
-								bullet.body.velocity.y = -700;
-								bullet.body.velocity.x =-20;
+								bullet.body.velocity.y = -700*dpr;
+								bullet.body.velocity.x =-20*dpr;
 							break;
 							case 4:
-								bullet.body.velocity.y = -700;
+								bullet.body.velocity.y = -700*dpr;
 									bullet.body.velocity.x = 0;
 							break;
 							case 5:
-								bullet.body.velocity.y = -700;
-									bullet.body.velocity.x = 20;
+								bullet.body.velocity.y = -700*dpr;
+									bullet.body.velocity.x = 20*dpr;
 							break;
 							case 6:
-								bullet.body.velocity.y = -700;
-									bullet.body.velocity.x = 40;
+								bullet.body.velocity.y = -700*dpr;
+									bullet.body.velocity.x = 40*dpr;
 							break;
 							case 7:
-								bullet.body.velocity.y = -700;
-									bullet.body.velocity.x = 60;
+								bullet.body.velocity.y = -700*dpr;
+									bullet.body.velocity.x = 60*dpr;
 							break;
 							case 8:
-								bullet.body.velocity.y = -700;
-									bullet.body.velocity.x = 80;
+								bullet.body.velocity.y = -700*dpr;
+									bullet.body.velocity.x = 80*dpr;
 							break;
 							
 						}
@@ -726,72 +726,72 @@
 						bullet.reset(this.body.x,this.body.y-this.sprite.height/2);
 						bullet.inputEnabled = true;
 						bullet.checkWorldBounds = true;
-						bullet.body.velocity.y = -500;
+						bullet.body.velocity.y = -500*dpr;
 						this.lastTimeFire = game.time.now + this.speedBulletRate;
 						bulletGroup.add(bullet);
 						bullet.isColision=false;
 						bullet.tint = 0x3cfa09;
 						switch(i){
 							case 0:
-								bullet.body.velocity.y = -700;
-								bullet.body.velocity.x = -120;
+								bullet.body.velocity.y = -700*dpr;
+								bullet.body.velocity.x = -120*dpr;
 							break;
 							case 1:
-								bullet.body.velocity.y = -700;
-								bullet.body.velocity.x =-100;
+								bullet.body.velocity.y = -700*dpr;
+								bullet.body.velocity.x =-100*dpr;
 							
 							break;
 							case 2:
-								bullet.body.velocity.y = -700;
-									bullet.body.velocity.x = -80;
+								bullet.body.velocity.y = -700*dpr;
+									bullet.body.velocity.x = -80*dpr;
 							break;
 							case 3:
-								bullet.body.velocity.y = -700;
-								bullet.body.velocity.x =-60;
+								bullet.body.velocity.y = -700*dpr;
+								bullet.body.velocity.x =-60*dpr;
 							break;
 							case 4:
-								bullet.body.velocity.y = -700;
-									bullet.body.velocity.x = -40;
+								bullet.body.velocity.y = -700*dpr;
+									bullet.body.velocity.x = -40*dpr;
 							break;
 							case 5:
-								bullet.body.velocity.y = -700;
-									bullet.body.velocity.x = -20;
+								bullet.body.velocity.y = -700*dpr;
+									bullet.body.velocity.x = -20*dpr;
 							break;
 							case 6:
-								bullet.body.velocity.y = -700;
-									bullet.body.velocity.x = 0;
+								bullet.body.velocity.y = -700*dpr;
+									bullet.body.velocity.x = 0*dpr;
 							break;
 							case 7:
-								bullet.body.velocity.y = -700;
-									bullet.body.velocity.x = 20;
+								bullet.body.velocity.y = -700*dpr;
+									bullet.body.velocity.x = 20*dpr;
 							break;
 							case 8:
-								bullet.body.velocity.y = -700;
-									bullet.body.velocity.x = 40;
+								bullet.body.velocity.y = -700*dpr;
+									bullet.body.velocity.x = 40*dpr;
 							break;
 							case 9:
-								bullet.body.velocity.y = -700;
-									bullet.body.velocity.x = 60;
+								bullet.body.velocity.y = -700*dpr;
+									bullet.body.velocity.x = 60*dpr;
 							break;
 							case 10:
-								bullet.body.velocity.y = -700;
-									bullet.body.velocity.x = 80;
+								bullet.body.velocity.y = -700*dpr;
+									bullet.body.velocity.x = 80*dpr;
 							break;
 							case 11:
-								bullet.body.velocity.y = -700;
-									bullet.body.velocity.x = 100;
+								bullet.body.velocity.y = -700*dpr;
+									bullet.body.velocity.x = 100*dpr;
 							break;
 							case 12:
-								bullet.body.velocity.y = -700;
-									bullet.body.velocity.x = 120;
+								bullet.body.velocity.y = -700*dpr;
+									bullet.body.velocity.x = 120*dpr;
 							break;
 							case 13:
-								bullet.body.velocity.y = -700;
-								bullet.body.velocity.x = -140;
+								bullet.body.velocity.y = -700*dpr;
+								bullet.body.velocity.x = -140*dpr;
 							break;
 							case 13:
-								bullet.body.velocity.y = -700;
-								bullet.body.velocity.x = 140;
+								bullet.body.velocity.y = -700*dpr;
+								bullet.body.velocity.x = 140*dpr;
 							break;
 							
 						}
@@ -810,22 +810,22 @@
 						bullet.reset(this.body.x,this.body.y-this.sprite.height/2);
 						bullet.inputEnabled = true;
 						bullet.checkWorldBounds = true;
-						bullet.body.velocity.y = -500;
+						bullet.body.velocity.y = -500*dpr;
 						this.lastTimeFire = game.time.now + this.speedBulletRate;
 						bulletGroup.add(bullet);
 						bullet.isColision=false;
 						switch(i){
 							case 0:
-								bullet.body.velocity.y = -500;
-								bullet.body.velocity.x = 40;
+								bullet.body.velocity.y = -500*dpr;
+								bullet.body.velocity.x = 40*dpr;
 							break;
 							case 1:
-								bullet.body.velocity.y = -500;
+								bullet.body.velocity.y = -500*dpr;
 							
 							break;
 							case 2:
-								bullet.body.velocity.y = -500;
-								bullet.body.velocity.x = -40;
+								bullet.body.velocity.y = -500*dpr;
+								bullet.body.velocity.x = -40*dpr;
 							break;
 						}
 					}
@@ -868,15 +868,15 @@
 				game.physics.enable(stone, Phaser.Physics.ARCADE);
 				stone.inputEnabled = true;
 
-				var speedY = Math.floor((Math.random() *70+30));
-				var speedX = Math.floor((Math.random() *20-10));
+				var speedY = Math.floor((Math.random() *70+30))*dpr;
+				var speedX = Math.floor((Math.random() *20-10))*dpr;
 				stone.body.velocity.y = speedY;
 				stone.body.velocity.x = speedX;
 
 				stoneGroup.add(stone);
 				stone.hp =  Math.floor((Math.random() *10)+7);
 				var stoneText = game.add.text(0, 0, ""+stone.hp, { font: "20px Arial", fill: "#ffffff", align: "center" });
-				stoneText.fontSize = 50*dpr + "px";
+				stoneText.fontSize = 50*dpr*2/3 + "px";
 				stoneText.strokeThickness = 4;
 				stoneText.anchor.setTo(0.5);
 				stone.addChild(stoneText);
@@ -909,7 +909,7 @@
 			var powerRatio = power.width/(game.width/30);
 			power.scale.setTo(1/powerRatio);
 			game.physics.enable(power, Phaser.Physics.ARCADE);
-			power.body.velocity.y = 100;
+			power.body.velocity.y = 100*dpr;
 
 			var circle_power = game.add.sprite(0,0,"circle_power");
 			circle_power.anchor.setTo(0.5);
@@ -929,7 +929,7 @@
 			var powerRatio = power.width/(game.width/20);
 			power.scale.setTo(1/powerRatio);
 			game.physics.enable(power, Phaser.Physics.ARCADE);
-			power.body.velocity.y = 100;
+			power.body.velocity.y = 100*dpr;
 
 			var circle_power = game.add.sprite(0,0,"circle_power");
 			circle_power.anchor.setTo(0.5);
