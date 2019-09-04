@@ -694,6 +694,7 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 			var solids_2 = [];
 
 			var stones = [];
+			var mousePoint =new Phaser.Point(0,0);
 			var gameplay = {
 				preload(){
 					
@@ -718,7 +719,7 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 					player = new Person();
 					game.input.onDown.add(mouseDown, this);
 					game.input.onUp.add(mouseUp, this);
-
+					game.input.addMoveCallback(mouseOver, this);
 					circle_point_1 = game.add.sprite(game.width/2,game.height/2,"circle_point");
 					circle_point_1.anchor.setTo(0.5);
 					var circle_point_1_ratio = circle_point_1.width/(game.width/70);
@@ -783,8 +784,8 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 					game.physics.arcade.overlap(enemy_arrows_group,player.than,eArowGroupOverlapEnemy, null, this);
 					if(game.input.activePointer.isDown&&isGameStart){
 						if(!isDown){
-							firstPoint.x = game.input.mousePointer﻿.x;
-							firstPoint.y = game.input.mousePointer﻿.y;
+							firstPoint.x = mousePoint.x;
+							firstPoint.y = mousePoint.y;
 							circle_point_1.reset(firstPoint.x,firstPoint.y);
 							circle_point_1.visible=true;
 							isDown=true;
@@ -793,16 +794,16 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 
 						}
 
-						var rotation =  game.math.angleBetween(firstPoint.x, firstPoint.y,game.input.mousePointer﻿.x,game.input.mousePointer﻿.y) - Math.PI / 2;
+						var rotation =  game.math.angleBetween(firstPoint.x, firstPoint.y,mousePoint.x,mousePoint.y) - Math.PI / 2;
 						player.sprite.angle =rotation*(180/Math.PI)-90;
-						circle_point_2.reset(game.input.mousePointer﻿.x,game.input.mousePointer﻿.y);
+						circle_point_2.reset(mousePoint.x,mousePoint.y);
 						circle_point_2.visible=true;
-						if(game.input.mousePointer﻿.x==firstPoint.x&&game.input.mousePointer﻿.y==firstPoint.y){
+						if(mousePoint.x==firstPoint.x&&mousePoint.y==firstPoint.y){
 							player.sprite.angle=0;
 						}
 						if(line){
-							line.rotation =game.math.angleBetween(firstPoint.x, firstPoint.y,game.input.mousePointer﻿.x,game.input.mousePointer﻿.y) - Math.PI / 2;
-							line.height =  game.math.distance(firstPoint.x, firstPoint.y, game.input.mousePointer﻿.x, game.input.mousePointer﻿.y);
+							line.rotation =game.math.angleBetween(firstPoint.x, firstPoint.y,mousePoint.x,mousePoint.y) - Math.PI / 2;
+							line.height =  game.math.distance(firstPoint.x, firstPoint.y, mousePoint.x, mousePoint.y);
 
 						}else{
 							line = game.add.sprite(game.width/2,game.height/2,"line");
@@ -970,6 +971,10 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 				
 
 			}
+			function mouseOver(pointer) {
+					 mousePoint = pointer;
+					console.log(mousePoint.x);
+			}
 			function eArowGroupOverlapEnemy(pl,arrow){
 				var x = arrow.x;
 				var y= arrow.y;
@@ -1004,8 +1009,8 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 					arrow.oldX=arrow.x;
 					arrow.oldY=arrow.y;
 					arrow.angle=player.sprite.angle;
-					arrow.xVel =  - dpr*(game.input.mousePointer.x-firstPoint.x)/6;
-					arrow.yVel =  - dpr*(game.input.mousePointer.y-firstPoint.y)/6;
+					arrow.xVel =  - dpr*(mousePoint.x-firstPoint.x)/6;
+					arrow.yVel =  - dpr*(mousePoint.y-firstPoint.y)/6;
 					arrow.trigger=false;
 					arrowGroup.add(arrow);
 					arrows.push(arrow);
