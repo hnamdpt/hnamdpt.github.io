@@ -867,16 +867,18 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 					copman_heath.height = copman.height*0.2;
 					copman_heath.tint= 0xff0000;
 					copman_heath.reset(copman.x+copman.width/2, nameTxt.y+copman_heath.height*1.5);
-					mraid.addEventListener('viewableChange', function() {
-						if(mraid.isViewable()) {
-							//trong game
-							game.paused=false;
-						} else {
-							game.paused=true;
-						}
-					});
+					// mraid.addEventListener('viewableChange', function() {
+					// 	if(mraid.isViewable()) {
+					// 		//trong
+					// 	} else {
+							
+					// 	}
+					// });
 				},
 				update(){
+					game.input.onDown.add(mouseDown, this);
+					game.input.onUp.add(mouseUp, this);
+					game.input.addMoveCallback(mouseOver, this);
 					// console.log();
 					if(enemy_1.body){
 
@@ -1281,7 +1283,7 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 					shoot=false;
 				}
 				function mouseDown(){
-					game.paused=false;
+
 					if(isGameStart){
 						player.sprite.animations.play("attack_ready",5,false);
 					}
