@@ -867,6 +867,14 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 					copman_heath.height = copman.height*0.2;
 					copman_heath.tint= 0xff0000;
 					copman_heath.reset(copman.x+copman.width/2, nameTxt.y+copman_heath.height*1.5);
+					mraid.addEventListener('viewableChange', function() {
+						if(mraid.isViewable()) {
+							//trong game
+							game.paused=false;
+						} else {
+							game.paused=true;
+						}
+					});
 				},
 				update(){
 					// console.log();
@@ -1273,7 +1281,7 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 					shoot=false;
 				}
 				function mouseDown(){
-
+					game.paused=false;
 					if(isGameStart){
 						player.sprite.animations.play("attack_ready",5,false);
 					}
@@ -1669,6 +1677,8 @@ if(!Phaser.Graphics.prototype.drawTriangle) {
 			game.state.add("boot",boot);
 			game.state.add("gameplay",gameplay);
 			game.state.start("boot");
+
+
 
 		</script>
 
