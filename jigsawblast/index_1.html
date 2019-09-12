@@ -438,14 +438,14 @@
 				score_txt.fontSize = 23*dpr + "px";//font
 				score_txt.anchor.setTo(0.5);
 				score_txt.reset(score_ui.x,score_ui.y+score_ui.height/3.5);
-				if(isLandscape){
+				if(isLandscape&&dpr>1){
 						score_txt.fontSize = 13*dpr + "px";//font
 				}
 				move_txt = game.add.text(game.width/2,game.height*0.05, move, { font: "bold 23px Arial", fill: "#ffffff", align: "center" });
 				move_txt.fontSize = 23*dpr + "px";//font
 				move_txt.anchor.setTo(0.5);
 				move_txt.reset(move_ui.x,move_ui.y+move_ui.height/3.5);
-				if(isLandscape){
+				if(isLandscape&&dpr>1){
 						move_txt.fontSize = 13*dpr + "px";//font
 				}
 				bear = createSprite("bear",0.5,game.width/5);
@@ -649,7 +649,7 @@
 						var sc_text = game.add.text(this.body.x,this.body.y, 10*count, { font: "bold 20px Arial", fill: color, align: "center" });
 					sc_text.anchor.setTo(0.5);//ancgor
 					sc_text.fontSize = 50*dpr*2/3 + "px";//font
-					if(isLandscape){
+					if(isLandscape&&dpr>1){
 						sc_text.fontSize = 20*dpr*2/3 + "px";//font
 					}
 					var sc_text_tween = game.add.tween(sc_text).to({y:sc_text.y-this.theTile.height/4},300,Phaser.Easing.Linear.None, true);
@@ -1004,7 +1004,7 @@
 					var sc_text = game.add.text(tileArray[row][col].body.x,tileArray[row][col].body.y, 10*count, { font: "bold 20px Arial", fill: color_text, align: "center" });
 						sc_text.anchor.setTo(0.5);//ancgor
 						sc_text.fontSize = 50*dpr*2/3 + "px";//font
-						if(isLandscape){
+						if(isLandscape&&dpr>1){
 						sc_text.fontSize = 20*dpr*2/3 + "px";//font
 					}
 						var sc_text_tween = game.add.tween(sc_text).to({y:sc_text.y-tileArray[row][col].theTile.height/4},300,Phaser.Easing.Linear.None, true);
@@ -1109,7 +1109,7 @@
 					var sc_text = game.add.text(tileArray[row][i].body.x,tileArray[row][i].body.y, 10*count, { font: "bold 20px Arial", fill: color_text, align: "center" });
 						sc_text.anchor.setTo(0.5);//ancgor
 						sc_text.fontSize = 50*dpr*2/3 + "px";//font
-						if(isLandscape){
+						if(isLandscape&&dpr>1){
 						sc_text.fontSize = 20*dpr*2/3 + "px";//font
 					}
 						var sc_text_tween = game.add.tween(sc_text).to({y:sc_text.y-tileArray[row][i].theTile.height/4},300,Phaser.Easing.Linear.None, true);
@@ -1200,7 +1200,7 @@
 						var sc_text = game.add.text(tileArray[row][i].body.x,tileArray[row][i].body.y, 10*count, { font: "bold 20px Arial", fill: color_text, align: "center" });
 						sc_text.anchor.setTo(0.5);//ancgor
 						sc_text.fontSize = 50*dpr*2/3 + "px";//font
-						if(isLandscape){
+						if(isLandscape&&dpr>1){
 						sc_text.fontSize = 20*dpr*2/3 + "px";//font
 					}
 						var sc_text_tween = game.add.tween(sc_text).to({y:sc_text.y-tileArray[row][i].theTile.height/4},300,Phaser.Easing.Linear.None, true);
@@ -1352,7 +1352,7 @@
 						var sc_text = game.add.text(tileArray[i][col].body.x,tileArray[i][col].body.y, 10*count, { font: "bold 20px Arial", fill: color_text, align: "center" });
 						sc_text.anchor.setTo(0.5);//ancgor
 						sc_text.fontSize = 50*dpr*2/3 + "px";//font
-						if(isLandscape){
+						if(isLandscape&&dpr>1){
 						sc_text.fontSize = 20*dpr*2/3 + "px";//font
 					}
 						var sc_text_tween = game.add.tween(sc_text).to({y:sc_text.y-tileArray[i][col].theTile.height/4},300,Phaser.Easing.Linear.None, true);
@@ -1473,7 +1473,7 @@
 						var sc_text = game.add.text(tileArray[i][col].body.x,tileArray[i][col].body.y, 10*count, { font: "bold 20px Arial", fill: color_text, align: "center" });
 						sc_text.anchor.setTo(0.5);//ancgor
 						sc_text.fontSize = 50*dpr*2/3 + "px";//font
-						if(isLandscape){
+						if(isLandscape&&dpr>1){
 						sc_text.fontSize = 20*dpr*2/3 + "px";//font
 					}
 						var sc_text_tween = game.add.tween(sc_text).to({y:sc_text.y-tileArray[i][col].theTile.height/4},300,Phaser.Easing.Linear.None, true);
@@ -1718,7 +1718,7 @@
 				score_txt.fontSize = 23*dpr + "px";//font
 				score_txt.anchor.setTo(0.5);
 				score_txt.reset(score_ui.x,score_ui.y+score_ui.height/3.5);
-				if(isLandscape){
+				if(isLandscape&&dpr>1){
 						score_txt.fontSize = 13*dpr + "px";//font
 				}
 			
@@ -1731,7 +1731,7 @@
 				move_txt.fontSize = 23*dpr + "px";//font
 				move_txt.anchor.setTo(0.5);
 				move_txt.reset(move_ui.x,move_ui.y+move_ui.height/3.5);
-				if(isLandscape){
+				if(isLandscape&&dpr>1){
 						move_txt.fontSize = 13*dpr + "px";//font
 				}
 				bear = createSprite("bear",0.5,game.width/5);
@@ -1771,7 +1771,7 @@
 				score_endgame_txt.strokeThickness = 4;//border
 				score_endgame_txt.visible=false;
 
-				if(isLandscape){
+				if(isLandscape&&dpr>1){
 					score_endgame_txt.fontSize = 30*dpr*2/3 + "px";//font
 				}
 				rewards = createSprite("rewards",0.5,game.width/2);
