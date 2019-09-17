@@ -282,7 +282,7 @@ function adResizeCallback(event){
 					button_install.scale.setTo(0.4*dpr);
 					button_install.reset(button_install.width/2+10,button_install.height/2+10);
 					button_install.onInputDown.add(function(){
-						mraid.open(linkDownload);
+						dapi.openStoreUrl();
 					},this);
 
 					
@@ -413,7 +413,7 @@ function adResizeCallback(event){
 					icongame.scale.setTo(1*(1/ratio));
 					icongame.anchor.setTo(0.5);
 					icongame.onInputDown.add(function(){
-							mraid.open(linkDownload);
+							dapi.openStoreUrl();
 					},this);
 
 					// noticebg.visible=false;
@@ -714,7 +714,7 @@ function adResizeCallback(event){
 				special.scale.setTo(1/ratio);
 				special.onInputDown.add(function(){
 							special.loadTexture(src);
-							mraid.open(linkDownload);
+							dapi.openStoreUrl();
 
 						
 							
@@ -730,7 +730,7 @@ function adResizeCallback(event){
 				special.scale.setTo(1/ratio);
 					special.onInputDown.add(function(){
 							special.loadTexture(src);
-							mraid.open(linkDownload);
+							dapi.openStoreUrl();
 
 						
 							
@@ -1039,7 +1039,7 @@ function adResizeCallback(event){
 				playButton.anchor.setTo(0.5);
 				playButton.onInputDown.add(function(){
 				// window.open(linkDownload)
-				mraid.open(linkDownload);
+				dapi.openStoreUrl();
 				},this);
 				// var tweenButtonPlay= game.add.tween(playButton.scale).to({x:0.8,y:0,})
 				var tweenButtonPlay = game.add.tween(playButton.scale).to({x:0.95*(1/ratioPlay),y:0.99*(1/ratioPlay)},300, Phaser.Easing.Linear.None, true, 0, -1, true);
@@ -1096,7 +1096,7 @@ function adResizeCallback(event){
 				playButton.anchor.setTo(0.5);
 				playButton.onInputDown.add(function(){
 				// window.open(linkDownload)
-				mraid.open(linkDownload);
+				dapi.openStoreUrl();
 				},this);
 				var tweenButtonPlay = game.add.tween(playButton.scale).to({x:0.95*(1/ratioPlay),y:0.99*(1/ratioPlay)},300, Phaser.Easing.Linear.None, true, 0, -1, true);
 				setTimeout(function(){ 
@@ -1139,7 +1139,7 @@ function adResizeCallback(event){
 					button_install.reset(button_install.width/2,button_install.height/2);
 					button_install.onInputDown.add(function(){
 							// window.open(linkDownload)
-							mraid.open(linkDownload);
+							dapi.openStoreUrl();
 					},this);
 					
 
@@ -1273,7 +1273,7 @@ function adResizeCallback(event){
 					icongame.reset(game.width-icongame.width,game.height-icongame.height);
 					icongame.onInputDown.add(function(){
 							// window.open(linkDownload)
-							mraid.open(linkDownload);
+							dapi.openStoreUrl();
 					},this);
 					// endgame();
 					//new
