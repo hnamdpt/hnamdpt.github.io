@@ -191,7 +191,10 @@
 		function changeCTA(net){
 		$("#a").removeClass("btn-success");
 		var content = $("#ms_word_filtered_html").val(); 
-		var name = fileName.slice(0,fileName.length-4);
+		if(fileName!=null){
+			var name = fileName.slice(0,fileName.length-4);
+		}
+		
 		switch(net){
 		case "unity":
 			
