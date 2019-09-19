@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ckeditor</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+	<script src="ckeditor/ckeditor.js"></script>
+	<script src="jquery-3.2.1.min.js"></script>
+	<style type="text/css" media="screen">
+		.append{
+			border:1px solid black;
+			width:100%;
+		}
+	</style>
+	<script type="text/javascript" src="fileSave.js"></script>
+</head>
+	<script type="text/javascript">
+				function dragStart(event) {
+				
+			    event.dataTransfer.setData("Text", event.target.innerHTML);
+			}
+				function allowDrop(event) {
+				    event.preventDefault();
+				}
+
+				function drop(event) {
+				    event.preventDefault();
+				    var data = event.dataTransfer.getData("text");
+				    event.target.appendChild(document.getElementById(data));
+				}
+	</script>
+	
+<body>
+	<div class="row">
+		<div class="col-9">
+			<form method="POST">
+				<textarea name="editor" id="editor" ondrop="drop(event)" ondragover="allowDrop(event)"></textarea>
+			</form>
+		</div>
+		<div class="col-3">
+			<div class="items" id = "buttonList">
+				<h3 style= "text-align:center;">LIST QUERY</h3>
+				<hr>
+				<p>Var</p>
+				<div class="items-var" style="height: 200px; overflow: auto; overflow-x: hidden;"></div>
+				<hr>
+				<p>Calc</p>
+				<div class="items-calc" style="height: 200px; overflow: auto; overflow-x: hidden;"></div>
+				<hr>
+			</div>
+			<!-- <div class="items-table">
+				<h3 style= "text-align:center;">LIST QUERY</h3>
+				<hr>
+			</div> -->
+			<hr>
+			<input type='file' accept='html/plain' onchange='openFile(event)' id="inputFile" style="display:none">
+			<br>
+			<label for="inputFile" class="btn btn-info">Choose File...</label>
+			<div class="fileLocation">
+				<input type="text" placeholder="File name..." id="filename" name= "filename" class="form-control">
+				<button id="save" class="btn btn-success" style= "margin-top:10px;">Save File</button>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	var firstGroup = [];
+
+	var secondGroup = [];
+
+	var thirdGroup = [];
+
+	var obj = {};
+
+	var dataArray = [];
+	// khoi tao ckeditor
+	var editor = CKEDITOR.replace( 'editor',{
+		//tạo kích thước cho editor
+		height:700,
+		extraPlugins: 'tableresize,dragdrop,imageresizerowandcolumn'
+					
+	});
+	var regSave = [];// bien luu lai gia tri khi insert file html
+	function addButton() {
+		// Tạo mảng chứa các object chứa giá trị lấy ra từ regex
+		for (var i = 0; i < firstGroup.length; i++) {
+			dataArray.push(obj[i]);
+		}
+		// Lặp mảng sinh ra các nút bấm
+		for(var i=0; i<dataArray.length; i++){
+			if (dataArray[i].type == "var") {
+				var bt = `<button data-index="`+i+`" class="append" style='background:none; padding:3px; margin:3px;'  ondragstart="dragStart(event)" draggable="true">`+dataArray[i].name.trim()+`</button>`;
+				$('.items-var').append(bt);
+			} else if (dataArray[i].type == "calc") {
+				var bt = `<button data-index="`+i+`" class="append" style='background:none; padding:3px; margin:3px;' ondragstart="dragStart(event)" draggable="true">`+dataArray[i].command.trim()+`</button>`;
+				$('.items-calc').append(bt);
+			}
+		};
+		// khi click thì sẽ insert variable vào ckeditor
+		$('.append').click(function(){
+			var i = $(this).attr('data-index');
+			if (dataArray[i].type == "var") {
+				var element = `<img alt = `+`'`+dataArray[i].name.trim()+`'`+` style="margin:5px;" data-format = '`+dataArray[i].name+`' data-format_2= `+`'`+dataArray[i].type.trim()+`'`+`/>`;
+				//data-fomramt luu ten cua bie, data-fomart_2 luu kieu cua bien
+				//chuyển sang element html
+				var domElement = CKEDITOR.dom.element.createFromHtml(element);
+				// insert vào ckeditor
+				CKEDITOR.instances['editor'].insertElement(domElement);
+			} else {
+				var element = `<img alt = `+`'`+dataArray[i].command.trim()+`'`+` style="margin:5px;"  data-format = '`+dataArray[i].name+`' data-format_2= `+`'`+dataArray[i].type.trim()+`'`+` />`;
+				//data-format luu dinh dang cua bien, data-format_2 type cua bien
+				//chuyển sang element html
+				var domElement = CKEDITOR.dom.element.createFromHtml(element);
+				// insert vào ckeditor
+				CKEDITOR.instances['editor'].insertElement(domElement);
+			}
+		});
+	}
+	// hàm add file vào ckeditor
+	function openFile(event) {
+		var input = event.target;
+		var reader = new FileReader();
+		reader.onload = function(){
+			var text = reader.result;
+			var regex = /<\?([\w-]*)(\s+[^\n]*)?\n([^\?]*)\?>/gi;
+			if (regex.test(text)) {
+				// Bỏ đoạn comment
+				// var text = text.replace(/<!--\s*[\s\S]*?\s*-->/g, "");
+				// Thay giá trị regex bằng rỗng, khai báo object
+				var text = text.replace(regex, function(match, $1, $2, $3) {
+					firstGroup.push($1);
+					secondGroup.push($2);
+					thirdGroup.push($3);
+					// Tạo object chứa các giá trị
+					for (var i = 0; i < firstGroup.length; i++) {
+						obj[i] = {
+							type: firstGroup[i],
+							name: secondGroup[i],
+							command: thirdGroup[i],
+						}
+					}
+					if($1=='out-var' || $1=='calc'){
+						if (/html/g.test($2)) {
+							return `<img alt = `+`'`+$2.trim()+`'`+` data-format = 'special' data-format_2 = `+`'`+$1.trim()+`'`+`/>`;
+						}//da
+						if (/device/g.test($2)) {
+							return `<img alt = `+`'`+$2.trim()+`'`+` data-format = 'special' data-format_2 = `+`'`+$1.trim()+`'`+`/>`;
+						}
+						if (/image_\d*/g.test($2)) {
+							return `<img alt = `+`'`+$2.trim()+`'`+` data-format = 'special' data-format_2 = `+`'`+$1.trim()+`'`+`/>`;
+						}
+						if (/item\d*/g.test($2)) {
+							return `<img alt = `+`'`+$2.trim()+`'`+` data-format = 'special' data-format_2 = `+`'`+$1.trim()+`'`+`/>`;
+						}
+						if (/provinceName/g.test($2)) {
+							return `<img alt = `+`'`+$2.trim()+`'`+` data-format = 'special' data-format_2= `+`'`+$1.trim()+`'`+`/>`;
+						}
+						return `<img alt = `+`'`+$3.trim()+`'`+` data-format = `+`'`+$2.trim()+`'`+`  data-format_2= `+`'`+$1.trim()+`'`+`/>`;
+					}else{
+						if($1=='var'){
+							var x = '<?' + $1 + ' ' + $2 + ' '+$3 + ' ?>';// Nối để tạo thành chuỗi ban đầu
+							// var x = text.match(regex);
+							regSave.push(x);// thêm vào mảng regSave
+							return "";
+						}
+					}
+					// return `<img alt = `+`'`+$3.trim()+`'`+` style='margin:5px;' class='img img-calc' />`
+				});
+				addButton();
+			}
+			CKEDITOR.instances.editor.insertHtml(text);
+		};
+		reader.readAsText(input.files[0]);
+	};
+
+	// xu ly drap-drop
+	CKEDITOR.plugins.add( 'dragdrop', {
+		requires: 'widget',
+		init: function(editor) {
+			editor.widgets.add('dragdrop', {
+				upcast: function(el) {
+					return el.name == 'span' && el.hasClass( 'drag-item' );
+				}
+			});
+			editor.addFeature( editor.widgets.registered.dragdrop );
+			// Bắt sự kiện paste element (drop) vào trong khung ckeditor
+			editor.on( 'paste', function(e) {
+				// Lấy giá trị đã set trong sự kiện drag
+				var item = e.data.dataTransfer.getData( 'item' );
+				// Giữ nguyên giá trị ban đầu khi kéo thả 1 element ngay trong ckeditor
+				if ( !item ) {
+					return;
+				}
+				// Tạo element thêm vào ckeditor khi thả
+				if (item.type == "var") {
+					e.data.dataValue = `<img alt = `+`'`+item.name.trim()+`'`+` data-format = `+`'`+item.name.trim()+`'`+` data-format_2= `+`'`+item.type.trim()+`'`+`/>`;
+					//data-format luu ten cua bien, data-format_2 luu kieu cua bien
+				} else if (item.type == "calc") {
+					e.data.dataValue = `<img alt = `+`'`+item.command.trim()+`'`+`  data-format = `+`'`+item.name.trim()+`'`+` data-format_2= `+`'`+item.type.trim()+`'`+`/>`;
+					//data-format luu dinh dang cua bien, data-format_2 luu kieu cua bien
+				}
+				
+			} );
+		}
+	} );
+	// Sự kiện kéo element
+	CKEDITOR.on( 'instanceReady', function() {
+		// Tìm các button có trong id buttonList
+		CKEDITOR.document.getById( 'buttonList' ).on( 'dragstart', function(e) {
+			var target = e.data.getTarget().getAscendant( 'button', true );
+			CKEDITOR.plugins.clipboard.initDragDataTransfer(e);
+			// Gán giá trị lấy ra từ mảng dataArray theo giá trị trên button được kéo
+			e.data.dataTransfer.setData( 'item', dataArray[ target.data( 'index' ) ] );
+			e.data.dataTransfer.setData( 'text/html', target.getText() );
+		} );
+	} );
+
+
+
+
+
+
+	// hàm save file html
+	$("#save").click( function() {
+		// đọc dữ liệu từ ckedior
+		var data = CKEDITOR.instances.editor.getData();
+		// var reverseRegex = /<img\salt="([^"]*)"[^"]*"img\s([^"]*)"[^\/]*\/>/gi;
+		var reverseRegex = /<img alt="([^"]*)"\sdata-format="([^"]*)"\sdata-format_2="([^"]*)"\s\/>/gi;
+		if (reverseRegex.test(data)) {
+			var data = data.replace(reverseRegex, function(match, $1, $2,$3) {
+					if($2=='special'){
+						return `<?out-var 
+                        		`+$1+`
+                			 ?>`
+					}else{
+						if($3=='calc'){
+							return `
+							<?calc `+$2+`
+                    			`+$1+`
+        					 ?>`
+						}else{
+							return `
+							<?out-var `+$2+`
+                    			`+$1+`
+        					 ?>`
+						}
+					}
+			});
+
+		}
+		var kq = regSave.join("\n");// chuyển mảng thành chuối 
+		data = kq + ' '+ data;// nối data với kq;
+		// lấy tên file
+		var filename = $("#filename").val();
+		var blob = new Blob([data], {type: "text/plain;charset=utf-8"});
+		 //save file
+		saveAs(blob, filename+".html");
+	});
+
+</script>
+</html>
