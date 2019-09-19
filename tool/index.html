@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ABI- PLAYABLE ADSTOOl</title>
+	<script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+	<style type="text/css">
+		*{
+			margin: 0px;
+			padding: 0px;
+		}
+		.row{
+			margin: 0px !important;
+		}
+		.footer{
+			position: fixed;
+			bottom: 0;
+			background: #f46200 !important;
+			padding-left: 5px;
+			padding-right:5px;
+		}
+		#edit-btn{
+			position: absolute;
+			top:30;
+			right: -60;
+		}
+	</style>
+</head>
+<body>
+	<div  class="alert alert-dark" role="alert" style="text-align: center;font-weight: bold">
+		<h3 style="font-weight: bold">PLAYABLE ADS TOOL</h3>
+		<!-- make by Hai Nam - ABI -->
+	</div>
+
+	<div class = 'row'>
+		<div class = "col-md-6">
+			<div id = "tit" class="alert alert-primary" role="alert">
+				<span id = "example">Example</span>
+			</div>
+			<textarea class="" id="ms_word_filtered_html" style = "width:100%;height:500px;" disabled>
+			</textarea>
+			<!-- <button id = "edit-btn">Edit</button> -->
+		</div>
+		<div class = "col-md-6">
+			<div id = "tit" class="alert alert-success" role="alert">
+				<span id = "selected">Result</span>
+			</div>
+			<textarea class="" id="ms_word_filtered_html_2" style = "width:100%;height:500px;" disabled></textarea>
+		</div>
+
+	</div>
+	
+	<div id = "list-btn" style="padding: 10px;">
+		<form enctype="multipart/form-data">
+			<input id="upload" type=file   accept="text/html" name="files[]" size=30>
+		</form>
+
+		<div class="alert alert-primary" role="alert" style="margin-top:10px;">
+			Select your file and click network you want then click "Dowload File" button.
+		</div>
+		<button id = "unity"  class="btn btn-dark">Unity</button>
+		<button id = "facebook"  class="btn btn-primary">Facebook</button>
+		<button id = "google" class="btn btn-danger">Google</button>
+		<button id = "applovin"  class="btn btn-info">Applovin</button>
+		<button id = "adcolony"  class="btn btn-warning">Adcolony</button>
+		<button id = "vungle"  class="btn btn-secondary" >Vungle</button>
+		<button id = "ironsource" class="btn btn-success">Ironsource</button>
+	</div>
+	<div class = "down" style="padding: 10px;">
+		<a href="" id="a" class="btn btn-secondary">Dowload File</a>
+	</div>
+	
+	<div class = 'footer btn-secondary'>
+		<span>@HaiNam - ABI Game Studio</span>
+	</div>
+
+	<div class="alert alert-danger"role="alert" style="margin-top:10px;">
+		How to use this tool
+	</div>
+
+	<div>
+		<div class = "tutorial" style="padding-left:20px;margin-bottom: 100px;">
+		
+			<strong>1. Add this comment right after script tag - code game below it</strong>
+			<br>
+			<img src="data:image/png;base64,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" style="width:700px;">	
+			<br>
+			<strong>2. With CTA, do following code below:
+				<br>
+				<b style="color:red">var linkDownload = 'yourlink';</b>
+				<br> 
+				For any CTA, the playable code should call the Javascript function <b style="color:red">window.open(linkDownload)</b>> whenever an action should open the store. 
+			</strong>
+			<br>
+			<strong>3.all code of game code in function <b style="color:red;">gameStart(){//code here}</b></strong>
+			<br>
+			<strong style="color:blue">5. If you still don't understand, follow the sample code above</strong>
+
+		</div>
+		
+		
+
+	</div>
+	<script type="text/javascript">
+
+		$("#ms_word_filtered_html").val(`<!DOCTYPE html>
+			<html>
+			<head>
+			<meta name=viewport content="width=device-width,
+			initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+			<meta name="apple-mobile-web-app-capable" content="yes" />
+			<meta charset="utf-8">
+			<title>Template example || follow it  to convert code to all Network</title>
+			</head>
+			<body>
+			<!-- Need a tag <div id = "game"></div> -->
+			<div id = "game"></div>
+			
+			<script type="text/javascript">
+			// add comment like below to covert to Ironsource
+			//startgame	
+			var width_game = window.innerWidth;
+			var height_game = window.innerHeight;
+			var dpr = window.devicePixelRatio;
+			var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+			var linkDownload =
+			"https://play.google.com/store/apps/details?id=com.abistudio.jigsaw.blast";
+			var operatingsystem = "";
+			if (/android/i.test(userAgent)) {
+				operatingsystem = "Android";
+				linkDownload = 
+				"https://play.google.com/store/apps/details?id=com.abistudio.jigsaw.blast";
+			}
+			if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+				operatingsystem = "iOS";
+				linkDownload =
+				'https://play.google.com/store/apps/details?id=com.abistudio.jigsaw.blast';
+			}
+			var isLandscape = false;
+			var ratio = width_game/height_game;
+			if(width_game>height_game){
+				isLandscape = true;
+			}
+			window.open(link);
+			function CTAClick(){
+				window.open(linkDownload);
+			}
+			function gameStart(){
+				// code game here
+			}
+			<\/script>
+			</body>
+			</html>`);
+
+		var fileContent;
+		var fileName;
+		function handleFileSelect(evt) {
+			var files = evt.target.files; // FileList object
+
+			// use the 1st file from the list
+			f = files[0];
+
+			var reader = new FileReader();
+
+			// Closure to capture the file information.
+			console.log(f);
+			fileName = f.name;
+			reader.onload = (function(theFile) {
+				return function(e) {
+
+					jQuery( '#ms_word_filtered_html' ).val( e.target.result );
+			// console.log(e);
+			content = $("#ms_word_filtered_html").val();
+				$("#example").html("File uploaded");
+		};
+	})(f);
+
+		// Read in the image file as a data URL.
+		reader.readAsText(f);
+	}
+
+	document.getElementById('upload').addEventListener('change', handleFileSelect, false);
+
+	function download(text, name, type) {
+		var a = document.getElementById("a");
+		var file = new Blob([text], {type: type});
+		a.href = URL.createObjectURL(file);
+		a.download = name;
+	}
+
+	var unity = $("#unity");
+	var applovin = $("#applovin");
+	var adcolony = $("#adcolony");
+	var unity = $("#unity");
+	var vungle = $("#vungle");
+	var facebook = $("#facebook");
+	var google = $("#google");
+
+	var ironsource = $("#ironsource");
+	unity.click(function(){
+		changeCTA("unity");
+	});
+	applovin.click(function(){
+		changeCTA("applovin");
+	})
+	adcolony.click(function(){
+		changeCTA("adcolony");
+	})
+	vungle.click(function(){
+		changeCTA("vungle");
+	});
+
+	facebook.click(function(){
+		changeCTA("facebook");
+	});
+	google.click(function(){
+		changeCTA("google");
+	});
+
+	ironsource.click(function(){
+		changeCTA("ironsource");
+	});
+
+	function changeCTA(net){
+		$("#a").removeClass("btn-success");
+		var content = $("#ms_word_filtered_html").val(); 
+		if(fileName!=null){
+			var name = fileName.slice(0,fileName.length-4);
+		}
+		
+		switch(net){
+			case "unity":
+			
+			var reCTA = /window.open\(([\w]*)\)/g;
+
+			 if (!reCTA.test(content)) {
+				   alert("ERROR - No function window.open(linkDownLoad)");
+				   return;
+				  }
+			var htmlContent = content.replace(reCTA,'mraid.open($1)');
+
+			var reBody = /<(\s*body[^?]*?)>/;
+			 if (!reBody.test(htmlContent)) {
+				   alert("ERROR - No <body> tag");
+				   return;
+				  }
+			var htmlContent = htmlContent.replace(reBody,`<body onload = "gameStart()">`);
+
+
+
+			download(htmlContent,name+ "_Unity.html","text/plain");
+			$("#ms_word_filtered_html_2").val(htmlContent);
+			$("#selected").html("Unity");
+			break;
+
+
+			case "facebook":
+			var reCTA = /window.open\(([\w]*)\)/g;
+			 if (!reCTA.test(content)) {
+				   alert("ERROR - No function window.open(linkDownLoad)");
+				   return;
+				  }
+			var htmlContent = content.replace(reCTA,'FbPlayableAd.onCTAClick()');
+
+			var reBody = /<(\s*body[^?]*?)>/;
+			 if (!reBody.test(htmlContent)) {
+				   alert("ERROR - No <body> tag");
+				   return;
+				  }
+			var htmlContent = htmlContent.replace(reBody,`<body onload = "gameStart()">`);
+
+			download(htmlContent,name+ "_Unity.html","text/plain");
+			$("#ms_word_filtered_html_2").val(htmlContent);
+			$("#selected").html("Facebook");
+
+			break;
+
+			case "applovin":
+			var reCTA = /window.open\(([\w]*)\)/g;
+				 if (!reCTA.test(content)) {
+				   alert("ERROR - No function window.open(linkDownLoad)");
+				   return;
+				  }
+			var htmlContent = content.replace(reCTA,'mraid.open($1)');
+
+			var reBody = /<(\s*body[^?]*?)>/;
+			 if (!reBody.test(htmlContent)) {
+				   alert("ERROR - No <body> tag");
+				   return;
+				  }
+			var htmlContent = htmlContent.replace(reBody,`<body onload = "gameStart()">`);
+
+			download(htmlContent,name+ "_Unity.html","text/plain");
+			$("#ms_word_filtered_html_2").val(htmlContent);
+			$("#selected").html("Applovin");
+			break;
+
+			case "adcolony":
+			var reCTA = /window.open\(([\w]*)\)/g;
+			 if (!reCTA.test(content)) {
+				   alert("ERROR - No function window.open(linkDownLoad)");
+				   return;
+				  }
+			var htmlContent = content.replace(reCTA,'mraid.open($1)');
+
+			var reBody = /<(\s*body[^?]*?)>/;
+			if (!reBody.test(htmlContent)) {
+				   alert("ERROR - No <body> tag");
+				   return;
+				  }
+			var htmlContent = htmlContent.replace(reBody,`<body onload = "gameStart()">`);
+
+			download(htmlContent,name+ "_Unity.html","text/plain");
+			$("#ms_word_filtered_html_2").val(htmlContent);
+			$("#selected").html("Adcolony");
+			break;
+
+			case "vungle":
+			var reCTA = /window.open\(([\w]*)\)/g;
+			if (!reCTA.test(content)) {
+				   alert("ERROR - No function window.open(linkDownLoad)");
+				   return;
+				  }
+			var htmlContent = content.replace(reCTA,'callSDK("download")');
+
+			var reBody = /<(\s*body[^?]*?)>/;
+			if (!reBody.test(htmlContent)) {
+				   alert("ERROR - No <body> tag");
+				   return;
+				  }
+			htmlContent = htmlContent.replace(reBody,`<body onload = "gameStart()">`);
+
+			var findInnerWidth = 'window.innerWidth';
+			htmlContent =replaceAll(htmlContent,findInnerWidth,'document.body.clientWidth');
+
+			var findInnerHeight = 'window.innerHeight';
+			htmlContent = replaceAll(htmlContent,findInnerHeight,'document.body.clientHeight');
+			download(htmlContent,name+ "_Vungle.html","text/plain");
+			$("#ms_word_filtered_html_2").val(htmlContent);
+			$("#selected").html("Vungle");
+
+			break;
+			case "google":
+			var htmlContent = '';
+			var reTile = /<(\s)*(title)>/g;
+			if (!reTile.test(content)) {
+				   alert("ERROR - No <title> tag");
+				   return;
+				  }
+			if(content.includes("https://tpc.googlesyndication.com/pagead/gadgets/html5/api/exitapi.js")==false){
+			htmlContent = content.replace(reTile,`\n<meta name="ad.size" content="width=480,height=320">\n<script type="text/javascript"src="https://tpc.googlesyndication.com/pagead/gadgets/html5/api/exitapi.js"> <\/script>\n<title>`);
+			}
+			var reCTA = /window.open\(([\w]*)\)/g;
+				if (!reCTA.test(htmlContent)) {
+				   alert("ERROR - No function window.open(linkDownLoad)");
+				   return;
+				  }
+			htmlContent = htmlContent.replace(reCTA,'ExitApi.exit()');
+			var reBody = /<(\s*body[^?]*?)>/;
+			if (!reBody.test(htmlContent)) {
+				   alert("ERROR - No <body> tag");
+				   return;
+				  }
+			htmlContent = htmlContent.replace(reBody,`<body onload = "gameStart()">`);
+			download(htmlContent,name+ "_Google.html","text/plain");
+			$("#ms_word_filtered_html_2").val(htmlContent);
+			$("#selected").html("Google");
+			break;
+
+
+
+			case "ironsource":
+
+			var reCTA = /window.open\(([\w]*)\)/g;
+			if (!reCTA.test(content)) {
+				   alert("ERROR - No function window.open(linkDownLoad)");
+				   return;
+				  }
+			htmlContent = content.replace(reCTA,'dapi.openStoreUrl()');
+			var reBody = /<(\s*body[^?]*?)>/;
+			if (!reBody.test(htmlContent)) {
+				   alert("ERROR - No <body> tag");
+				   return;
+				  }
+			htmlContent = htmlContent.replace(reBody,`<body>`);
+
+			var reTile = /<(\s)*(title)>/g;
+			if (!reTile.test(htmlContent)) {
+				   alert("ERROR - No <title> tag");
+				   return;
+				  }
+			htmlContent = htmlContent.replace(reTile,`\n<script type="text/javascript">
+				function getScript(e,i){var n=document.createElement("script");n.type="text/javascript",n.async=!0,i&&(n.onload=i),n.src=e,document.head.appendChild(n)}function parseMessage(e){var i=e.data,n=i.indexOf(DOLLAR_PREFIX+RECEIVE_MSG_PREFIX);if(-1!==n){var t=i.slice(n+2);return getMessageParams(t)}return{}}function getMessageParams(e){var i,n=[],t=e.split("/"),a=t.length;if(-1===e.indexOf(RECEIVE_MSG_PREFIX)){if(a>=2&&a%2===0)for(i=0;a>i;i+=2)n[t[i]]=t.length<i+1?null:decodeURIComponent(t[i+1])}else{var o=e.split(RECEIVE_MSG_PREFIX);void 0!==o[1]&&(n=JSON&&JSON.parse(o[1]))}return n}function getDapi(e){var i=parseMessage(e);if(!i||i.name===GET_DAPI_URL_MSG_NAME){var n=i.data;getScript(n,onDapiReceived)}}function invokeDapiListeners(){for(var e in dapiEventsPool)dapiEventsPool.hasOwnProperty(e)&&dapi.addEventListener(e,dapiEventsPool[e])}function onDapiReceived(){dapi=window.dapi,window.removeEventListener("message",getDapi),invokeDapiListeners()}function init(){window.dapi.isDemoDapi&&(window.parent.postMessage(DOLLAR_PREFIX+SEND_MSG_PREFIX+JSON.stringify({state:"getDapiUrl"}),"*"),window.addEventListener("message",getDapi,!1))}var DOLLAR_PREFIX="$$$",RECEIVE_MSG_PREFIX="DAPI_SERVICE:",SEND_MSG_PREFIX="DAPI_AD:",GET_DAPI_URL_MSG_NAME="connection.getDapiUrl",dapiEventsPool={},dapi=window.dapi||{isReady:function(){return!1},addEventListener:function(e,i){dapiEventsPool[e]=i},removeEventListener:function(e){delete dapiEventsPool[e]},isDemoDapi:!0};init();
+				<\/script>\n<title>`);
+
+			var findStartGame = '//startgame';
+			if(htmlContent.includes('//startgame')==false){
+				 alert("ERROR - Let's add comment  '//startgame' to your code");
+				   return;
+			}
+			var htmlContent = replaceAll(htmlContent,findStartGame,`//startgame\nvar isFirstLoad = true;
+				window.onload = function(){
+					(dapi.isReady()) ? onReadyCallback() : dapi.addEventListener("ready", onReadyCallback);	
+				}
+				function onReadyCallback(){
+					dapi.removeEventListener("ready", onReadyCallback);
+					let isAudioEnabled = !!dapi.getAudioVolume();
+
+					if(dapi.isViewable()){
+						adVisibleCallback({isViewable: true});
+					}
+					dapi.addEventListener("viewableChange", adVisibleCallback);
+					dapi.addEventListener("adResized", adResizeCallback);
+					dapi.addEventListener("audioVolumeChange",audioVolumeChangeCallback);
+
+				}
+				function adVisibleCallback(event){
+					console.log("isViewable " + event.isViewable);
+
+					if (event.isViewable){
+						screenSize = dapi.getScreenSize();
+						if(isFirstLoad){
+							gameStart();
+							isFirstLoad = false;
+						}
+					} else {
+						//PAUSE the ad and MUTE sounds
+					}
+				}
+				function adResizeCallback(event){
+					screenSize = event;
+					// document.getElementById("log2").innerHTML = "game: "+game.width + "x"+game.height + "screen: "+window.innerWidth+"x"+window.innerHeight +"DAPI: "+ dapi.getScreenSize().width + "x"+ dapi.getScreenSize().height;
+					game.scale.refresh();
+				}
+
+				//When user clicks on the download button - use openStoreUrl function
+				function userClickedDownloadButton(event){
+					dapi.openStoreUrl();
+				}
+
+				function audioVolumeChangeCallback(volume){
+					let isAudioEnabled = !!volume;
+					if (isAudioEnabled){
+						//START or turn on the sound
+					} else {
+						//PAUSE the turn off the sound
+					}
+				}\n`);
+			download(htmlContent,name+ "_Ironsource.html","text/plain");
+			$("#selected").html("Ironsource");
+			$("#ms_word_filtered_html_2").val(htmlContent);
+			break;
+		}
+		$("#a").addClass( "btn btn-success" );
+	}
+	function replaceAll(str, find, replace) {
+		return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
+	}
+	function escapeRegExp(str) {
+		return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+	}
+</script>
+</body>
+</html>

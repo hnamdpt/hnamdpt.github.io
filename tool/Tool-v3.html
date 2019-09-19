@@ -32,9 +32,9 @@
 	<div class = 'row'>
 		<div class = "col-md-6">
 			<div id = "tit" class="alert alert-primary" role="alert">
-				<span >Source</span>
+				<span id = "example">Example</span>
 			</div>
-			<textarea class="" id="ms_word_filtered_html" style = "width:100%;height:500px;" disabled>
+			<textarea class="" id="ms_word_filtered_html" style = "width:100%;height:500px;">
 			</textarea>
 		</div>
 		<div class = "col-md-6">
@@ -167,6 +167,7 @@
 					jQuery( '#ms_word_filtered_html' ).val( e.target.result );
 			// console.log(e);
 			content = $("#ms_word_filtered_html").val();
+				$("#example").html("File uploaded");
 		};
 	})(f);
 
@@ -227,10 +228,21 @@
 			case "unity":
 			
 			var reCTA = /window.open\(([\w]*)\)/g;
+
+			 if (!reCTA.test(content)) {
+				   alert("ERROR - No function window.open(linkDownLoad)");
+				   return;
+				  }
 			var htmlContent = content.replace(reCTA,'mraid.open($1)');
 
 			var reBody = /<(\s*body[^?]*?)>/;
+			 if (!reBody.test(htmlContent)) {
+				   alert("ERROR - No <body> tag");
+				   return;
+				  }
 			var htmlContent = htmlContent.replace(reBody,`<body onload = "gameStart()">`);
+
+
 
 			download(htmlContent,name+ "_Unity.html","text/plain");
 			$("#ms_word_filtered_html_2").val(htmlContent);
@@ -240,9 +252,17 @@
 
 			case "facebook":
 			var reCTA = /window.open\(([\w]*)\)/g;
+			 if (!reCTA.test(content)) {
+				   alert("ERROR - No function window.open(linkDownLoad)");
+				   return;
+				  }
 			var htmlContent = content.replace(reCTA,'FbPlayableAd.onCTAClick()');
 
 			var reBody = /<(\s*body[^?]*?)>/;
+			 if (!reBody.test(htmlContent)) {
+				   alert("ERROR - No <body> tag");
+				   return;
+				  }
 			var htmlContent = htmlContent.replace(reBody,`<body onload = "gameStart()">`);
 
 			download(htmlContent,name+ "_Unity.html","text/plain");
@@ -253,9 +273,17 @@
 
 			case "applovin":
 			var reCTA = /window.open\(([\w]*)\)/g;
+				 if (!reCTA.test(content)) {
+				   alert("ERROR - No function window.open(linkDownLoad)");
+				   return;
+				  }
 			var htmlContent = content.replace(reCTA,'mraid.open($1)');
 
 			var reBody = /<(\s*body[^?]*?)>/;
+			 if (!reBody.test(htmlContent)) {
+				   alert("ERROR - No <body> tag");
+				   return;
+				  }
 			var htmlContent = htmlContent.replace(reBody,`<body onload = "gameStart()">`);
 
 			download(htmlContent,name+ "_Unity.html","text/plain");
@@ -265,9 +293,17 @@
 
 			case "adcolony":
 			var reCTA = /window.open\(([\w]*)\)/g;
+			 if (!reCTA.test(content)) {
+				   alert("ERROR - No function window.open(linkDownLoad)");
+				   return;
+				  }
 			var htmlContent = content.replace(reCTA,'mraid.open($1)');
 
 			var reBody = /<(\s*body[^?]*?)>/;
+			if (!reBody.test(htmlContent)) {
+				   alert("ERROR - No <body> tag");
+				   return;
+				  }
 			var htmlContent = htmlContent.replace(reBody,`<body onload = "gameStart()">`);
 
 			download(htmlContent,name+ "_Unity.html","text/plain");
@@ -277,9 +313,17 @@
 
 			case "vungle":
 			var reCTA = /window.open\(([\w]*)\)/g;
+			if (!reCTA.test(content)) {
+				   alert("ERROR - No function window.open(linkDownLoad)");
+				   return;
+				  }
 			var htmlContent = content.replace(reCTA,'callSDK("download")');
 
 			var reBody = /<(\s*body[^?]*?)>/;
+			if (!reBody.test(htmlContent)) {
+				   alert("ERROR - No <body> tag");
+				   return;
+				  }
 			htmlContent = htmlContent.replace(reBody,`<body onload = "gameStart()">`);
 
 			var findInnerWidth = 'window.innerWidth';
@@ -295,12 +339,24 @@
 			case "google":
 			var htmlContent = '';
 			var reTile = /<(\s)*(title)>/g;
+			if (!reTile.test(content)) {
+				   alert("ERROR - No <title> tag");
+				   return;
+				  }
 			if(content.includes("https://tpc.googlesyndication.com/pagead/gadgets/html5/api/exitapi.js")==false){
 			htmlContent = content.replace(reTile,`\n<meta name="ad.size" content="width=480,height=320">\n<script type="text/javascript"src="https://tpc.googlesyndication.com/pagead/gadgets/html5/api/exitapi.js"> <\/script>\n<title>`);
 			}
 			var reCTA = /window.open\(([\w]*)\)/g;
+				if (!reCTA.test(htmlContent)) {
+				   alert("ERROR - No function window.open(linkDownLoad)");
+				   return;
+				  }
 			htmlContent = htmlContent.replace(reCTA,'ExitApi.exit()');
 			var reBody = /<(\s*body[^?]*?)>/;
+			if (!reBody.test(htmlContent)) {
+				   alert("ERROR - No <body> tag");
+				   return;
+				  }
 			htmlContent = htmlContent.replace(reBody,`<body onload = "gameStart()">`);
 			download(htmlContent,name+ "_Google.html","text/plain");
 			$("#ms_word_filtered_html_2").val(htmlContent);
@@ -312,17 +368,33 @@
 			case "ironsource":
 
 			var reCTA = /window.open\(([\w]*)\)/g;
+			if (!reCTA.test(content)) {
+				   alert("ERROR - No function window.open(linkDownLoad)");
+				   return;
+				  }
 			htmlContent = content.replace(reCTA,'dapi.openStoreUrl()');
 			var reBody = /<(\s*body[^?]*?)>/;
+			if (!reBody.test(htmlContent)) {
+				   alert("ERROR - No <body> tag");
+				   return;
+				  }
 			htmlContent = htmlContent.replace(reBody,`<body>`);
 
 			var reTile = /<(\s)*(title)>/g;
+			if (!reTile.test(htmlContent)) {
+				   alert("ERROR - No <title> tag");
+				   return;
+				  }
 			htmlContent = htmlContent.replace(reTile,`\n<script type="text/javascript">
 				function getScript(e,i){var n=document.createElement("script");n.type="text/javascript",n.async=!0,i&&(n.onload=i),n.src=e,document.head.appendChild(n)}function parseMessage(e){var i=e.data,n=i.indexOf(DOLLAR_PREFIX+RECEIVE_MSG_PREFIX);if(-1!==n){var t=i.slice(n+2);return getMessageParams(t)}return{}}function getMessageParams(e){var i,n=[],t=e.split("/"),a=t.length;if(-1===e.indexOf(RECEIVE_MSG_PREFIX)){if(a>=2&&a%2===0)for(i=0;a>i;i+=2)n[t[i]]=t.length<i+1?null:decodeURIComponent(t[i+1])}else{var o=e.split(RECEIVE_MSG_PREFIX);void 0!==o[1]&&(n=JSON&&JSON.parse(o[1]))}return n}function getDapi(e){var i=parseMessage(e);if(!i||i.name===GET_DAPI_URL_MSG_NAME){var n=i.data;getScript(n,onDapiReceived)}}function invokeDapiListeners(){for(var e in dapiEventsPool)dapiEventsPool.hasOwnProperty(e)&&dapi.addEventListener(e,dapiEventsPool[e])}function onDapiReceived(){dapi=window.dapi,window.removeEventListener("message",getDapi),invokeDapiListeners()}function init(){window.dapi.isDemoDapi&&(window.parent.postMessage(DOLLAR_PREFIX+SEND_MSG_PREFIX+JSON.stringify({state:"getDapiUrl"}),"*"),window.addEventListener("message",getDapi,!1))}var DOLLAR_PREFIX="$$$",RECEIVE_MSG_PREFIX="DAPI_SERVICE:",SEND_MSG_PREFIX="DAPI_AD:",GET_DAPI_URL_MSG_NAME="connection.getDapiUrl",dapiEventsPool={},dapi=window.dapi||{isReady:function(){return!1},addEventListener:function(e,i){dapiEventsPool[e]=i},removeEventListener:function(e){delete dapiEventsPool[e]},isDemoDapi:!0};init();
 				<\/script>\n<title>`);
 
 			var findStartGame = '//startgame';
-			var htmlContent = replaceAll(htmlContent,findStartGame,`//start game\nvar isFirstLoad = true;
+			if(htmlContent.includes('//startgame')==false){
+				 alert("ERROR - Let's add comment  '//startgame' to your code");
+				   return;
+			}
+			var htmlContent = replaceAll(htmlContent,findStartGame,`//startgame\nvar isFirstLoad = true;
 				window.onload = function(){
 					(dapi.isReady()) ? onReadyCallback() : dapi.addEventListener("ready", onReadyCallback);	
 				}
@@ -369,7 +441,7 @@
 					} else {
 						//PAUSE the turn off the sound
 					}
-				}`);
+				}\n`);
 			download(htmlContent,name+ "_Ironsource.html","text/plain");
 			$("#selected").html("Ironsource");
 			$("#ms_word_filtered_html_2").val(htmlContent);
