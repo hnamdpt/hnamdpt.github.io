@@ -21,27 +21,26 @@
 			padding-left: 5px;
 			padding-right:5px;
 		}
-		#edit-btn{
+		/*#edit-btn{
 			position: absolute;
 			top:30;
-			right: -60;
-		}
+		}*/
 	</style>
 </head>
 <body>
-	<div  class="alert alert-dark" role="alert" style="text-align: center;font-weight: bold">
-		<h3 style="font-weight: bold">PLAYABLE ADS TOOL</h3>
+	<div  class="alert alert-dark" role="alert" style="text-align: center;font-weight: bold;background: #0f0f0f">
+		<h3 style="font-weight: bold;color:#fff">PLAYABLE ADS TOOL^^</h3>
 		<!-- make by Hai Nam - ABI -->
 	</div>
 
 	<div class = 'row'>
 		<div class = "col-md-6">
-			<div id = "tit" class="alert alert-primary" role="alert">
-				<span id = "example">Example</span>
+			<div id = "tit" class="alert alert-primary" role="alert" >
+				<span id = "example" style="margin-bottom: 10px;">Example</span>
 			</div>
 			<textarea class="" id="ms_word_filtered_html" style = "width:100%;height:500px;" disabled>
 			</textarea>
-			<!-- <button id = "edit-btn">Edit</button> -->
+		
 		</div>
 		<div class = "col-md-6">
 			<div id = "tit" class="alert alert-success" role="alert">
@@ -53,8 +52,13 @@
 	</div>
 	
 	<div id = "list-btn" style="padding: 10px;">
-		<form enctype="multipart/form-data">
-			<input id="upload" type=file   accept="text/html" name="files[]" size=30>
+		<button id = "edit-btn" class="btn btn-secondary">Edit Code</button>
+		<hr style="background:#eee">
+		<form enctype="multipart/form-data" style="margin-top:10px;">
+			<label for="upload" class="custom-file-upload">
+   				 <span  class="btn btn-primary" style="cursor: pointer;">Upload File</span>
+			</label>
+			<input id="upload" type=file   accept="text/html" name="files[]" size=30 style="display: none">
 		</form>
 
 		<div class="alert alert-primary" role="alert" style="margin-top:10px;">
@@ -65,18 +69,19 @@
 		<button id = "google" class="btn btn-danger">Google</button>
 		<button id = "applovin"  class="btn btn-info">Applovin</button>
 		<button id = "adcolony"  class="btn btn-warning">Adcolony</button>
-		<button id = "vungle"  class="btn btn-secondary" >Vungle</button>
+		<button id = "vungle"   class="btn btn-info" style="background: #ff8838; border:1px solid #ff8838;">Vungle</button>
 		<button id = "ironsource" class="btn btn-success">Ironsource</button>
 	</div>
 	<div class = "down" style="padding: 10px;">
+		<!-- <p id = "loading" style="color:red"></p> -->
 		<a href="" id="a" class="btn btn-secondary">Dowload File</a>
 	</div>
 	
 	<div class = 'footer btn-secondary'>
 		<span>@HaiNam - ABI Game Studio</span>
 	</div>
-
-	<div class="alert alert-danger"role="alert" style="margin-top:10px;">
+	<hr style="background:#eee">
+	<div class="alert alert-danger"role="alert" style="margin:10px;">
 		How to use this tool
 	</div>
 
@@ -104,6 +109,24 @@
 
 	</div>
 	<script type="text/javascript">
+
+		$("#edit-btn").click(function(){
+			console.log()
+			if($("#ms_word_filtered_html")[0].hasAttribute("disabled")){
+				$("#ms_word_filtered_html").attr("disabled",false);
+				$("#edit-btn").html("Edit Enable");
+				$("#edit-btn").removeClass( "btn-secondary");
+				$("#edit-btn").addClass( "btn-info" );
+			}else{
+				$("#ms_word_filtered_html").attr("disabled",true);
+					$("#edit-btn").html("Edit Disable");
+					$("#edit-btn").removeClass("btn-info");
+					$("#edit-btn").addClass("btn-secondary" );
+			}
+			
+		});
+
+
 
 		$("#ms_word_filtered_html").val(`<!DOCTYPE html>
 			<html>
@@ -224,6 +247,7 @@
 	});
 
 	function changeCTA(net){
+		// $("#loading").html("waiting...");
 		$("#a").removeClass("btn-success");
 		var content = $("#ms_word_filtered_html").val(); 
 		if(fileName!=null){
@@ -454,6 +478,7 @@
 			break;
 		}
 		$("#a").addClass( "btn btn-success" );
+			// $("#loading").html("Done");
 	}
 	function replaceAll(str, find, replace) {
 		return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
