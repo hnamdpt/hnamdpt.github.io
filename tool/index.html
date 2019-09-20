@@ -263,6 +263,17 @@
 		switch(net){
 			case "unity":
 			
+				// function gameStart()
+				// {
+
+				// }
+
+			var reGameStart = /gameStart\s*\(\)\s*{/;
+			if(!reGameStart.test(content)){
+				alert("ERROR - No function gameStart()");
+				return;
+			}
+
 			var reCTA = /window.open\(([\w]*)\)/g;
 
 			if (!reCTA.test(content)) {
@@ -287,6 +298,11 @@
 
 
 			case "facebook":
+			var reGameStart = /gameStart\s*\(\)\s*{/;
+			if(!reGameStart.test(content)){
+				alert("ERROR - No function gameStart()");
+				return;
+			}
 			var reCTA = /window.open\(([\w]*)\)/g;
 			if (!reCTA.test(content)) {
 				alert("ERROR - No function window.open(linkDownLoad)");
@@ -301,12 +317,16 @@
 			}
 			var htmlContent = htmlContent.replace(reBody,`<body onload = "gameStart()">`);
 
-			download(htmlContent,name+ "_Unity.html","text/plain");
+			download(htmlContent,name+ "_Facebook.html","text/plain");
 			$("#ms_word_filtered_html_2").val(htmlContent);
 			$("#selected").html("Facebook");
 
 			break;
-
+			var reGameStart = /gameStart\s*\(\)\s*{/;
+			if(!reGameStart.test(content)){
+				alert("ERROR - No function gameStart()");
+				return;
+			}
 			case "applovin":
 			var reCTA = /window.open\(([\w]*)\)/g;
 			if (!reCTA.test(content)) {
@@ -322,12 +342,17 @@
 			}
 			var htmlContent = htmlContent.replace(reBody,`<body onload = "gameStart()">`);
 
-			download(htmlContent,name+ "_Unity.html","text/plain");
+			download(htmlContent,name+ "Applovin.html","text/plain");
 			$("#ms_word_filtered_html_2").val(htmlContent);
 			$("#selected").html("Applovin");
 			break;
 
 			case "adcolony":
+			var reGameStart = /gameStart\s*\(\)\s*{/;
+			if(!reGameStart.test(content)){
+				alert("ERROR - No function gameStart()");
+				return;
+			}
 			var reCTA = /window.open\(([\w]*)\)/g;
 			if (!reCTA.test(content)) {
 				alert("ERROR - No function window.open(linkDownLoad)");
@@ -342,12 +367,17 @@
 			}
 			var htmlContent = htmlContent.replace(reBody,`<body onload = "gameStart()">`);
 
-			download(htmlContent,name+ "_Unity.html","text/plain");
+			download(htmlContent,name+ "_Adcolony.html","text/plain");
 			$("#ms_word_filtered_html_2").val(htmlContent);
 			$("#selected").html("Adcolony");
 			break;
 
 			case "vungle":
+			var reGameStart = /gameStart\s*\(\)\s*{/;
+			if(!reGameStart.test(content)){
+				alert("ERROR - No function gameStart()");
+				return;
+			}
 			var reCTA = /window.open\(([\w]*)\)/g;
 			if (!reCTA.test(content)) {
 				alert("ERROR - No function window.open(linkDownLoad)");
@@ -373,6 +403,11 @@
 
 			break;
 			case "google_hoz":
+			var reGameStart = /gameStart\s*\(\)\s*{/;
+			if(!reGameStart.test(content)){
+				alert("ERROR - No function gameStart()");
+				return;
+			}
 			var htmlContent = '';
 			var reTile = /<(\s)*(title)>/g;
 			if (!reTile.test(content)) {
@@ -400,6 +435,11 @@
 			break;
 
 			case "google_ver":
+			var reGameStart = /gameStart\s*\(\)\s*{/;
+			if(!reGameStart.test(content)){
+				alert("ERROR - No function gameStart()");
+				return;
+			}
 			var htmlContent = '';
 			var reTile = /<(\s)*(title)>/g;
 			if (!reTile.test(content)) {
@@ -428,7 +468,11 @@
 
 
 			case "ironsource":
-
+			var reGameStart = /gameStart\s*\(\)\s*{/;
+			if(!reGameStart.test(content)){
+				alert("ERROR - No function gameStart()");
+				return;
+			}
 			var reCTA = /window.open\(([\w]*)\)/g;
 			if (!reCTA.test(content)) {
 				alert("ERROR - No function window.open(linkDownLoad)");
