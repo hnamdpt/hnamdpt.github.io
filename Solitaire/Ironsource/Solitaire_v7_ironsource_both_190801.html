@@ -277,10 +277,10 @@ function adResizeCallback(event){
 					background.anchor.setTo(0.5);
 					background.width = game.width;
 					background.height = game.height;
-					var button_install = game.add.button(0,0,"btn_install");
+				var button_install = game.add.button(0,0,"btn_install");
 					button_install.anchor.setTo(0.5);
 					button_install.scale.setTo(0.4*dpr);
-					button_install.reset(button_install.width/2+10,button_install.height/2+10);
+					button_install.reset(button_install.width,button_install.height);
 					button_install.onInputDown.add(function(){
 						dapi.openStoreUrl();
 					},this);
@@ -1132,15 +1132,13 @@ function adResizeCallback(event){
 		    		background.width = game.width;
 		    		background.height = game.height;
 		    		var button_install = game.add.button(0,0,"btn_install");
-		    		var button_install_ratio = button_install.width/(game.width/4);
-		    		button_install.anchor.setTo(0.5);
-		    		button_install.scale.setTo(1/button_install_ratio);
-		    		
-		    		button_install.reset(button_install.width/2,button_install.height/2);
-		    		button_install.onInputDown.add(function(){
-							// window.open(linkDownload)
+					var button_install_ratio = button_install.width/(game.width/3);
+					button_install.anchor.setTo(0.5);
+					button_install.scale.setTo(1/button_install_ratio);
+					button_install.reset(game.width/2,button_install.height/1.5);
+					button_install.onInputDown.add(function(){
 							dapi.openStoreUrl();
-						},this);
+					},this);
 		    		
 
 

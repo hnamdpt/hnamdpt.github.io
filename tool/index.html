@@ -257,7 +257,7 @@
 		$("#a").removeClass("btn-success");
 		var content = $("#ms_word_filtered_html").val(); 
 		if(fileName!=null){
-			var name = fileName.slice(0,fileName.length-4);
+			var name = fileName.replace(".html","");
 		}
 		
 		switch(net){
