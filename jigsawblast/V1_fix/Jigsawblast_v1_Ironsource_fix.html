@@ -125,7 +125,9 @@ var isFirstLoad = true;
 					}
 				}
 
-			var width_game = window.innerWidth;
+
+			function gameStart(){
+					var width_game = window.innerWidth;
 			var height_game = window.innerHeight;
 			var dpr = window.devicePixelRatio;
 			var userAgent = navigator.userAgent || navigator.vendor || window.opera;
@@ -145,6 +147,8 @@ var isFirstLoad = true;
 				isLandscape = true;
 			}
 		// console.log("width_game: "+width_game+"height_game"+height_game);
+
+
 		var game;
 		var scale;
 		var width,height;
@@ -2144,6 +2148,8 @@ var isFirstLoad = true;
 			game.state.add("gameplay",gameplay);
 			game.state.add("gameplay_2",gameplay_2);
 			game.state.start("boot");
+			}
+		
 
 
 
