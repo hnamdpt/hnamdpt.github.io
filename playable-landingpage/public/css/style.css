@@ -1,0 +1,56 @@
+/*header*/
+#header {
+  z-index: 1;
+  background: url(../images/banner/home-banner.jpg) no-repeat scroll center center;
+  background-size: cover;
+  height: 800px;
+  padding-top: 15px; }
+  #header #menu .menu-ul {
+    margin-top: 10px; }
+    #header #menu .menu-ul .menu-item {
+      display: inline-block;
+      margin-right: 20px; }
+      #header #menu .menu-ul .menu-item a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 17px; }
+  #header #slogan {
+    margin-top: 200px; }
+    #header #slogan .slogan-title h3 {
+      color: #fff;
+      font-size: 40px; }
+    #header #slogan .slogan-des {
+      color: #fff;
+      font-size: 20px; }
+    #header #slogan .banner-right {
+      position: absolute;
+      top: -100px;
+      left: 20%; }
+      #header #slogan .banner-right img {
+        width: 100%; }
+
+#main #section-intro {
+  margin-top: 30px;
+  background: #f9faff; }
+  #main #section-intro .banner-left img {
+    width: 100%; }
+  #main #section-intro .intro-content {
+    text-align: justify; }
+    #main #section-intro .intro-content .title {
+      font-size: 50px; }
+#main #section-achievement {
+  margin-top: 30px; }
+  #main #section-achievement .achievement .archivement-item .img-icon {
+    width: 100%; }
+    #main #section-achievement .achievement .archivement-item .img-icon img {
+      width: 30%;
+      margin: auto;
+      display: block; }
+  #main #section-achievement .achievement .archivement-item .description {
+    margin-top: 10px;
+    font-size: 15px;
+    text-align: center;
+    color: #706a68; }
+
+/*# sourceMappingURL=style.css.map */

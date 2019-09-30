@@ -1,0 +1,108 @@
+/*header*/
+#header{
+    // border:1px solid red;
+	.container{
+		     // border:1px solid red;
+	}
+    z-index: 1;
+    background: url(../images/banner/home-banner.jpg) no-repeat scroll center center;
+    background-size: cover;
+    height: 800px;
+    padding-top: 15px;
+    .header-logo{
+    	// border:1px solid blue;
+    }
+     .top-header{
+      
+    }
+    #menu{
+        .menu-ul{
+            // border:1px solid red;
+            margin-top: 10px;
+            .menu-item{
+                display: inline-block;
+                margin-right: 20px;
+                a{
+                    color:#fff;
+                    text-decoration: none;
+                    font-weight: bold;
+                    font-size: 17px;
+                }
+            }
+        }
+    }
+    #slogan{
+        // position: absolute;
+        // top:100px;
+        // left:20%
+        .container{
+               // border:1px solid red;
+        }
+        // border:1px solid red;
+        margin-top: 200px;
+        .slogan-title{
+            h3{
+                color:#fff;
+                font-size: 40px;
+            }
+        }
+        .slogan-des{
+            color:#fff;
+            font-size: 20px;
+        }
+        .banner-right{
+            position: absolute;
+            top:-100px;
+            left:20%;
+            img{
+                width: 100%;
+            }
+        }
+    }
+}
+
+#main{
+    // border:1px solid red;
+    #section-intro{
+        margin-top: 30px;
+        // border:1px solid red;
+        background: #f9faff;
+        .banner-left{
+            // border:1px solid red;
+            img{
+                width: 100%;
+            }
+        }
+        .intro-content{
+            text-align: justify;
+            .title{
+                font-size: 50px;
+            }
+            .des{
+            }
+        }
+    }
+
+    #section-achievement{
+        margin-top: 30px;
+        .achievement{
+            .archivement-item{
+                // border:1px solid red;
+                .img-icon{
+                    width:100%;
+                    img{
+                        width:30%;
+                        margin: auto;
+                        display: block;
+                    }
+                }
+                .description{
+                    margin-top: 10px;
+                    font-size:15px;
+                    text-align: center;
+                    color:#706a68;
+                }
+            }
+        }
+    }
+}
