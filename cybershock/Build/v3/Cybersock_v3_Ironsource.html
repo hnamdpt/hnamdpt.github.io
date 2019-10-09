@@ -287,7 +287,9 @@ var isFirstLoad = true;
 				create(){
 					background = game.add.graphics();
 					// background.beginFill(0x00323f, 1);
-					background.beginFill(0x328921,1);
+					// background.beginFill(0x8f3ad7,1);//purple
+					// background.beginFill(0xededed,1);//white
+					 background.beginFill(0x126e00,1);//green
 					background.drawRect(0, 0, game.width, game.height);
 					pathway = createSprite("pathway",0.5,game.width*0.7);
 					pathway.height=game.height;
@@ -748,7 +750,7 @@ var isFirstLoad = true;
 						numOfBot_1++;
 					
 					var bot_1;
-					if(numOfBot_1<31){
+					if(numOfBot_1<10){
 
 						bot_1= new Bot_1();
 					}else{
@@ -777,7 +779,7 @@ var isFirstLoad = true;
 									lastPosition.y = bot_1.body.y;
 								}, this);
 									console.log(numOfBot_1);
-									if(numOfBot_1==31){
+									if(numOfBot_1==10){
 
 											game.time.events.remove(wave1);
 									}

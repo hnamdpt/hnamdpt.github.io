@@ -748,7 +748,7 @@ var isFirstLoad = true;
 						numOfBot_1++;
 					
 					var bot_1;
-					if(numOfBot_1<15){
+					if(numOfBot_1<10){
 
 						bot_1= new Bot_1();
 					}else{
@@ -777,7 +777,7 @@ var isFirstLoad = true;
 									lastPosition.y = bot_1.body.y;
 								}, this);
 									console.log(numOfBot_1);
-									if(numOfBot_1==15){
+									if(numOfBot_1==10){
 
 											game.time.events.remove(wave1);
 									}
