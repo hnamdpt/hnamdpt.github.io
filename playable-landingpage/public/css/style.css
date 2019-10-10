@@ -38,7 +38,8 @@
   #main #section-intro .intro-content {
     text-align: justify; }
     #main #section-intro .intro-content .title {
-      font-size: 50px; }
+      font-size: 40px;
+      font-weight: 700; }
 #main #section-achievement {
   margin-top: 30px; }
   #main #section-achievement .achievement .archivement-item .img-icon {
@@ -53,31 +54,50 @@
     text-align: center;
     color: #706a68; }
 
-#product .product .title {
-  text-align: center; }
-  #product .product .title h3 {
-    font-weight: 700;
-    font-size: 40px; }
-  #product .product .title p {
-    color: #706a68; }
-#product .product .item {
-  margin-top: 20px; }
-  #product .product .item .a-img {
-    display: block;
-    width: 100%; }
-    #product .product .item .a-img .img {
+#product .product {
+  margin-top: 30px; }
+  #product .product .title {
+    text-align: center; }
+    #product .product .title h3 {
+      font-weight: 700;
+      font-size: 40px; }
+    #product .product .title p {
+      color: #706a68; }
+  #product .product .item {
+    margin-top: 20px; }
+    #product .product .item .a-img {
+      display: block;
       width: 100%; }
+      #product .product .item .a-img .img {
+        width: 100%; }
 
 #product-service .product-service .item {
   margin-top: 30px; }
-  #product-service .product-service .item .title {
-    margin-top: 100px; }
-    #product-service .product-service .item .title h3 {
-      text-align: center;
-      font-weight: 700;
-      font-size: 40px; }
+  #product-service .product-service .item .title h3 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 40px; }
   #product-service .product-service .item .des {
+    text-align: justify;
     font-size: 1.1em;
     color: #706a68; }
+  #product-service .product-service .item .img img {
+    width: 100%; }
+
+#footer {
+  height: 300px;
+  background: #222222; }
+  #footer .footer .item {
+    margin-top: 20px;
+    color: #fff; }
+    #footer .footer .item .icon-img {
+      width: 80%; }
+    #footer .footer .item .item-col {
+      padding-left: 0px !important;
+      padding-right: 0px !important;
+      margin-top: 15px; }
+    #footer .footer .item .tt-outgame {
+      font-weight: 500;
+      font-size: 20px; }
 
 /*# sourceMappingURL=style.css.map */

@@ -76,7 +76,8 @@
         .intro-content{
             text-align: justify;
             .title{
-                font-size: 50px;
+                font-size: 40px;
+                font-weight: 700;
             }
             .des{
             }
@@ -109,6 +110,7 @@
 #product{
     .product{
         // border:1px solid red;
+        margin-top: 30px;
         .title{
             text-align: center;
             h3{
@@ -133,11 +135,12 @@
     }
 }
 #product-service{
+    // border:1px solid red;
     .product-service{
-        .item{
+        .item{   
             margin-top: 30px;
             .title{
-                margin-top: 100px;
+               
 
                h3{
                 text-align: center;
@@ -147,8 +150,39 @@
 
             }
             .des{
+                text-align: justify;
                 font-size: 1.1em;
                  color: #706a68;
+            }
+            .img{
+               
+                img{
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+#footer{
+    height:300px;
+    background: #222222;
+    .footer{
+        .item{
+            margin-top: 20px;
+            color:#fff;
+            .icon-img{
+                width: 80%;
+            }
+            .item-col{
+                padding-left: 0px !important;
+                padding-right: 0px !important;
+                margin-top: 15px;
+            }
+            .tt-outgame{
+                font-weight: 500;
+                // text-align: center;
+                font-size: 20px;
             }
         }
     }
