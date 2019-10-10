@@ -53,4 +53,31 @@
     text-align: center;
     color: #706a68; }
 
+#product .product .title {
+  text-align: center; }
+  #product .product .title h3 {
+    font-weight: 700;
+    font-size: 40px; }
+  #product .product .title p {
+    color: #706a68; }
+#product .product .item {
+  margin-top: 20px; }
+  #product .product .item .a-img {
+    display: block;
+    width: 100%; }
+    #product .product .item .a-img .img {
+      width: 100%; }
+
+#product-service .product-service .item {
+  margin-top: 30px; }
+  #product-service .product-service .item .title {
+    margin-top: 100px; }
+    #product-service .product-service .item .title h3 {
+      text-align: center;
+      font-weight: 700;
+      font-size: 40px; }
+  #product-service .product-service .item .des {
+    font-size: 1.1em;
+    color: #706a68; }
+
 /*# sourceMappingURL=style.css.map */
