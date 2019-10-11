@@ -243,10 +243,7 @@
 						createSlots();
 
 						createMainButton();
-						energy_txt = game.add.text(main_button.x,main_button.y-main_button.height/4.1,energy, { font: "bold 20px Arial", fill: "#d7c340", align: "center" });
-					energy_txt.fontSize = 30*dpr*2/3 + "px";//font
-					energy_txt.anchor.setTo(0.5);//ancgor
-					energy_txt.strokeThickness = 1;//border
+				
 					
 
 					deloyGroup = game.add.group();
@@ -596,7 +593,7 @@
 					game.world.bringToTop(enemy_Group);
 					// enemies=[];
 				}
-
+				game.world.bringToTop(enemy_Group);
 				var numOfBot_1 =0;
 				wave1 = game.time.events.loop(Phaser.Timer.SECOND * 0.6,function(){
 						//do something
@@ -834,8 +831,9 @@
 					this.body.sprite.anchor.setTo(0.5);
 					this.body.sprite.ratio = this.body.sprite.width/(game.width/9);
 					if(checkIsLandscape()){
-						this.body.sprite.ratio = this.body.sprite.width/(game.width/20);
+						this.body.sprite.ratio = this.body.sprite.width/(game.width/23);
 					}
+					this.body.category = 1;
 					this.body.sprite.scale.setTo(1/this.body.sprite.ratio);
 					this.body.sprite.animations.add("shoot",[0,1,2,3],0,true);
 					// this.body.sprite.animations.play("shoot",24,true);
@@ -923,8 +921,9 @@
 						this.body.sprite.anchor.setTo(0.5);
 						this.body.sprite.ratio = this.body.sprite.width/(game.width/5);
 						if(checkIsLandscape()){
-							this.body.sprite.ratio = this.body.sprite.width/(game.width/15);
+							this.body.sprite.ratio = this.body.sprite.width/(game.width/13);
 						}
+						this.body.category = 2;
 						this.body.sprite.scale.setTo(1/this.body.sprite.ratio);
 						this.body.sprite.animations.add("shoot",[0,1,2,3,4,5,6,7,8,9,0],0,true);
 						this.body.sprite.frame=0;
@@ -993,8 +992,9 @@
 					this.body.sprite.anchor.setTo(0.5);
 					this.body.sprite.ratio = this.body.sprite.width/(game.width/8);
 					if(checkIsLandscape()){
-						this.body.sprite.ratio = this.body.sprite.width/(game.width/18);
+						this.body.sprite.ratio = this.body.sprite.width/(game.width/20);
 					}
+					this.body.category = 4;
 					this.body.sprite.scale.setTo(1/this.body.sprite.ratio);
 					this.body.sprite.animations.add("shoot",[0,1,2,3,4,5,6,7],0,true);
 					this.body.sprite.frame=0;
@@ -1065,6 +1065,7 @@
 					if(checkIsLandscape()){
 						this.body.sprite.ratio = this.body.sprite.width/(game.width/15);
 					}
+					this.body.category = 3;
 					this.body.sprite.scale.setTo(1/this.body.sprite.ratio);
 					this.body.sprite.animations.add("shoot",[0,1,2,3,4,5,6,7],0,true);
 					this.body.sprite.frame=0;
@@ -1641,6 +1642,16 @@
 						}
 
 					},this);
+					if(energy_txt){
+						energy_txt.destroy(true);
+					}
+					energy_txt = game.add.text(main_button.x,main_button.y-main_button.height/4.1,energy, { font: "bold 20px Arial", fill: "#d7c340", align: "center" });
+					energy_txt.fontSize = 30*dpr*2/3 + "px";//font
+					if(checkIsLandscape()){
+						energy_txt.fontSize = 50*dpr*2/3 + "px";//font
+					}
+					energy_txt.anchor.setTo(0.5);//ancgor
+					energy_txt.strokeThickness = 2;//border
 				}
 
 				function createDeloy(){
@@ -1726,6 +1737,34 @@
 						for(var i=0;i<towers.length;i++){
 							game.world.bringToTop(towers[i].body);
 
+							
+
+							switch(towers[i].body.category){
+								case 1:
+								var tower = new Tower_1(towers[i].body.level);
+								tower.deloy = towers[i].deloy;
+								towers[i].body.destroy(true);
+								towers[i] = tower;
+								break;
+								case 2:
+								var tower = new Tower_2(towers[i].body.level);
+								tower.deloy = towers[i].deloy;
+								towers[i].body.destroy(true);
+								towers[i] = tower;
+								break;
+								case 3:
+								var tower = new Tower_3(towers[i].body.level);
+								tower.deloy = towers[i].deloy;
+								towers[i].body.destroy(true);
+								towers[i] = tower;
+								break;
+								case 4:
+								var tower = new Tower_4(towers[i].body.level);
+								tower.deloy = towers[i].deloy;
+								towers[i].body.destroy(true);
+								towers[i] = tower;
+								break;
+							}
 							towers[i].body.reset(deloys[towers[i].deloy].x,deloys[towers[i].deloy].y);
 							deloys[towers[i].deloy].visible=false;
 							// console.log(towers[i].deloy);
