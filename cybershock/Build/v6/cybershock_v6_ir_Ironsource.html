@@ -1621,8 +1621,8 @@ var isFirstLoad = true;
 							freeplay_ratio =  freeplay.width/(game.width/12);
 						}
 						freeplay.scale.setTo(1/freeplay_ratio);
-						freeplay.reset(freeplay.width,freeplay.height);//unity
-						 // freeplay.reset(game.width/2,freeplay.height/2);//ironsource
+						// freeplay.reset(freeplay.width,freeplay.height);//unity
+						 freeplay.reset(game.width/2,freeplay.height/2);//ironsource
 
 						freeplay.onInputDown.add(function(){
 							dapi.openStoreUrl();
