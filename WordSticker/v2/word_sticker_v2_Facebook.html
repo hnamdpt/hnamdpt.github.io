@@ -45,7 +45,7 @@
 
 
 		
-				var width_game = window.innerWidth;
+					var width_game = window.innerWidth;
 			var height_game = window.innerHeight;
 			var dpr = window.devicePixelRatio;
 			var userAgent = navigator.userAgent || navigator.vendor || window.opera;
@@ -708,7 +708,7 @@
 						if((game.height/game.width)<1.6){
 							 character_ratio = this.sprite.width/(game.width/12);	
 							}else{
-								 character_ratio = this.sprite.width/(game.width/9);
+								 character_ratio = this.sprite.width/(game.width/10);
 							}
 					}
 					this.sprite.scale.setTo(1/character_ratio);
@@ -1571,7 +1571,7 @@
 					    function createNotice(){
 					    	
 					    	if(isLandScape()){
-					    		notice = createSprite("notice_1",0.5,game.width*0.2);
+					    		notice = createSprite("notice_1",0.5,game.width*0.23);
 
 					    		if(countTutorial==1){
 					    			notice.loadTexture("notice_2");
@@ -1797,7 +1797,7 @@
 					    	}
 
 					    	if(isLandScape()){
-					    		circle = createSprite("circle",0.5,game.width/6);
+					    		circle = createSprite("circle",0.5,game.width/7);
 					    		circle.reset(game.width/2,game.height*0.75);
 					    	}else{
 					    		if((game.height/game.width)<1.6){
@@ -1823,7 +1823,6 @@
 
 					    	icon_game.scale.setTo(1/ratioIcon);
 					    	icon_game.reset(game.width-icon_game.width/1.5,game.height-icon_game.height/1.5);
-					    	icon_game.fixedToCamera﻿ ﻿= true;
 					    	icon_game.onInputDown.add(function(){
 					    		FbPlayableAd.onCTAClick();
 					    	},this);
@@ -1836,7 +1835,7 @@
 					    	button_install.anchor.setTo(0.5);
 					    	var btnInstallRatio = button_install.width/(game.width/2.5);
 					    	if(isLandScape()){
-					    		var btnInstallRatio = button_install.width/(game.width/10);
+					    		var btnInstallRatio = button_install.width/(game.width/8);
 					    	}
 					    	button_install.scale.setTo(1/btnInstallRatio);
 					        // button_install.reset(button_install.width/1.5,button_install.height/1.5);
