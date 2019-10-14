@@ -283,6 +283,7 @@ var isFirstLoad = true;
 				var defeated;
 				var sound_bg,sound_shot,sound_crepdie,sound_bom,sound_vitory,sound_deloy;
 				var icon_game;
+				var bots;
 				var gameplay = {
 					preload(){
 
@@ -641,12 +642,12 @@ var isFirstLoad = true;
 			function createTutorial_5(){
 				console.log("create tutorial 5");
 				// tutorial=5;
+
 				if(enemies.length>0){
 					for(var i=0;i<enemies.length;i++){
 						if(enemies[i]!=null){
 							enemies[i].destroy(true);
 						}
-
 					}
 
 					numOfBot_1=0;
@@ -655,14 +656,16 @@ var isFirstLoad = true;
 					enemies=[];
 				}
 				if(wave_1){
-					game.time.events.remove(wave1);
-				}
-
+						game.time.events.remove(wave1);
+					}
 				game.world.bringToTop(enemy_Group);
 				var numOfBot_1 = 0;
-				wave1 = game.time.events.loop(Phaser.Timer.SECOND * 0.6,function(){
+					 wave1 = game.time.events.loop(Phaser.Timer.SECOND * 0.6,function(){
 						numOfBot_1++;
+						if(numOfBot_1>=10){
 
+							game.time.events.remove(wave1);
+						}
 						var bot_1;
 						if(numOfBot_1<10){
 
@@ -694,12 +697,9 @@ var isFirstLoad = true;
 							lastPosition.y = bot_1.body.y;
 						}, this);
 						console.log(numOfBot_1);
-						if(numOfBot_1>=10){
-
-							game.time.events.remove(wave1);
-						}
-
+						
 					});
+
 			}
 			function bullet_overlap_enemy(bullet,enemy){
 				game.time.events.add(Phaser.Timer.SECOND * 0.1,function(){
@@ -1468,8 +1468,12 @@ var isFirstLoad = true;
 				dark_bg.drawRect(0, 0, game.width, game.height);
 				dark_bg.alpha=0.7;
 				freeplay = game.add.button(game.width/2,game.height/2,"freeplay");
+
 				freeplay.anchor.setTo(0.5);
 				var freeplay_ratio = freeplay.width/(game.width/3);
+				if(checkIsLandscape()){
+					var freeplay_ratio = freeplay.width/(game.width/10);
+				}
 				freeplay.scale.setTo(1/freeplay_ratio);
 				freeplay.reset(game.width/2,icon_game.y);
 				freeplay.onInputDown.add(function(){
@@ -1477,7 +1481,7 @@ var isFirstLoad = true;
 				},this);
 				
 				if(checkIsLandscape()){
-					freeplay.visible=false;
+					// freeplay.visible=false;
 					gift_1= createSprite("gift_1",0.5,game.width*0.3);
 					gift_2= createSprite("gift_2",0.5,game.width*0.3);
 					gift_3= createSprite("gift_3",0.5,game.width*0.3);
@@ -1623,8 +1627,8 @@ var isFirstLoad = true;
 							freeplay_ratio =  freeplay.width/(game.width/12);
 						}
 						freeplay.scale.setTo(1/freeplay_ratio);
-						freeplay.reset(freeplay.width,freeplay.height);//unity
-						 // freeplay.reset(game.width/2,freeplay.height/2);//ironsource
+						// freeplay.reset(freeplay.width,freeplay.height);//unity
+						 freeplay.reset(game.width/2,freeplay.height/2);//ironsource
 
 						freeplay.onInputDown.add(function(){
 							dapi.openStoreUrl();
