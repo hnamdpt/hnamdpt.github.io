@@ -74,14 +74,29 @@
 #product-service .product-service .item {
   margin-top: 30px; }
   #product-service .product-service .item .title h3 {
-    text-align: center;
+    text-align: left;
     font-weight: 700;
-    font-size: 40px; }
+    font-size: 40px;
+    color: #009BD4; }
   #product-service .product-service .item .des {
     text-align: justify;
     font-size: 1.1em;
     color: #706a68; }
   #product-service .product-service .item .img img {
+    width: 100%; }
+
+#network .network .item {
+  margin-top: 30px; }
+  #network .network .item .title h3 {
+    text-align: left;
+    font-weight: 700;
+    font-size: 40px;
+    color: #009BD4; }
+  #network .network .item .des {
+    text-align: justify;
+    font-size: 1.1em;
+    color: #706a68; }
+  #network .network .item .img img {
     width: 100%; }
 
 #footer {
@@ -99,5 +114,30 @@
     #footer .footer .item .tt-outgame {
       font-weight: 500;
       font-size: 20px; }
+
+#contact {
+  margin-top: 50px; }
+  #contact .contact .contact-img {
+    width: 100%; }
+    #contact .contact .contact-img img {
+      width: 60%;
+      margin: auto;
+      display: block; }
+
+#brand {
+  margin-top: 50px; }
+  #brand .brand .title h3 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 40px;
+    color: #009BD4; }
+  #brand .brand .img {
+    margin-top: 30px;
+    width: 100%;
+    margin: auto; }
+    #brand .brand .img img {
+      display: block;
+      margin: auto;
+      width: 100%; }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,19 +1,19 @@
 /*header*/
 #header{
     // border:1px solid red;
-	.container{
+    .container{
 		     // border:1px solid red;
-	}
-    z-index: 1;
-    background: url(../images/banner/home-banner.jpg) no-repeat scroll center center;
-    background-size: cover;
-    height: 800px;
-    padding-top: 15px;
-    .header-logo{
+         }
+         z-index: 1;
+         background: url(../images/banner/home-banner.jpg) no-repeat scroll center center;
+         background-size: cover;
+         height: 800px;
+         padding-top: 15px;
+         .header-logo{
     	// border:1px solid blue;
     }
-     .top-header{
-      
+    .top-header{
+
     }
     #menu{
         .menu-ul{
@@ -37,7 +37,7 @@
         // left:20%
         .container{
                // border:1px solid red;
-        }
+           }
         // border:1px solid red;
         margin-top: 200px;
         .slogan-title{
@@ -114,8 +114,8 @@
         .title{
             text-align: center;
             h3{
-                    font-weight: 700;
-                    font-size:40px;
+                font-weight: 700;
+                font-size:40px;
             }
             p{
                 color:#706a68;
@@ -140,28 +140,59 @@
         .item{   
             margin-top: 30px;
             .title{
-               
+
 
                h3{
-                text-align: center;
+                text-align: left;
                 font-weight: 700;
                 font-size:40px;
-               }
+                 color:#009BD4;
+            }
 
-            }
-            .des{
-                text-align: justify;
-                font-size: 1.1em;
-                 color: #706a68;
-            }
-            .img{
-               
-                img{
-                    width: 100%;
-                }
+        }
+        .des{
+            text-align: justify;
+            font-size: 1.1em;
+            color: #706a68;
+        }
+        .img{
+
+            img{
+                width: 100%;
             }
         }
     }
+}
+}
+#network{
+    // border:1px solid red;
+    .network{
+        .item{   
+            margin-top: 30px;
+            .title{
+
+
+               h3{
+                text-align: left;
+                font-weight: 700;
+                font-size:40px;
+                color:#009BD4;
+            }
+
+        }
+        .des{
+            text-align: justify;
+            font-size: 1.1em;
+            color: #706a68;
+        }
+        .img{
+
+            img{
+                width: 100%;
+            }
+        }
+    }
+}
 }
 
 #footer{
@@ -185,5 +216,42 @@
                 font-size: 20px;
             }
         }
+    }
+}
+#contact{
+     margin-top: 50px;
+    .contact{
+       .contact-img{
+        width: 100%;
+
+        img{
+            width: 60%;
+            margin: auto;
+            display: block;
+        }
+       }
+    }
+}
+#brand{
+    margin-top: 50px;
+    .brand{
+        .title{
+             h3{
+            text-align: center;
+            font-weight: 700;
+            font-size: 40px;
+            color:#009BD4;
+        }
+        }
+       .img{
+        margin-top: 30px;
+        width: 100%;
+        margin: auto;
+        img{
+            display: block;
+            margin: auto;
+             width: 100%;
+        }
+       }
     }
 }
