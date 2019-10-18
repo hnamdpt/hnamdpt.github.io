@@ -396,19 +396,7 @@ var isFirstLoad = true;
 
 
 				update(){
-					if (document.hidden || document﻿.mozHidden ﻿|| document﻿.msHidden ﻿|| document.webkitHidden﻿)    {      
-
-						console.log("pause");
-						this.﻿game.gamePaused﻿(event);  
-
-
-
-					}    else    {      
-						console.log("resume");
-
-
-
-						this.game.gameResumed(event);    }
+					
 						if(enemies.length>0){
 							game.physics.arcade.overlap(bullet_1_Group,enemy_Group,bullet_overlap_enemy, null, this);
 						}
