@@ -282,17 +282,10 @@ var isFirstLoad = true;
 						
 					},
 					create(){
-						game.stage.visibilityChange = true;
-						// if(document.hidden){
-						// 	console.log("")
-						// }
-
-
-						
+						game.stage.disableVisibilityChange  = true;
 						createBackground();
 						createPathway();
 						createFreeplay();
-
 						var startX = pathway.x-pathway.width/2;
 						var startY = pathway.y+pathway.height/2;
 						pH = pathway.height;
@@ -1748,7 +1741,7 @@ var isFirstLoad = true;
 
 					var freeplay_ratio = freeplay.width/(game.width/4);
 					if(checkIsLandscape()){
-						freeplay_ratio =  freeplay.width/(game.width/10);
+						freeplay_ratio =  freeplay.width/(game.width/8);
 					}
 					freeplay.scale.setTo(1/freeplay_ratio);
 						freeplay.reset(freeplay.width,freeplay.height*1.5);//unity
@@ -2155,14 +2148,14 @@ var isFirstLoad = true;
 			}
 
 			document.addEventListener( 'visibilitychange' , function() {
-    if (document.hidden) {
-        // console.log('bye');
-        game.paused = true;
-    } else {
-    	game.paused = false;
-        console.log('well back');
-    }
-		}, false );
+		    if (document.hidden) {
+		        // console.log('bye');
+		        game.paused = true;
+		    } else {
+		    	game.paused = false;
+		        console.log('well back');
+		    }
+				}, false );
 		}
 
 
