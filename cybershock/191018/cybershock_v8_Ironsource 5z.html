@@ -70,8 +70,9 @@ var isFirstLoad = true;
 					console.log("isViewable " + event.isViewable);
 
 					if (event.isViewable){
-						if(game){
+						if(game&&game.stage){
 							game.paused=false;
+
 						game.stage.visibilityChange        = true;
 						}
 						
@@ -82,7 +83,7 @@ var isFirstLoad = true;
 						}
 					} else {
 						//PAUSE the ad and MUTE sounds
-						if(game){
+						if(game&&game.stage){
 							game.paused=true;
 						game.stage.visibilityChange        = false;
 						}
