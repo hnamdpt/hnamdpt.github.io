@@ -33,12 +33,13 @@ body {
     display: none; }
   #custom .heading {
     font-size: 20px;
-    color: #000000;
+    color: #004B0B;
     display: block;
     width: 100%;
     padding-left: 10px;
-    height: 40px;
-    line-height: 40px; }
+    height: 25px;
+    line-height: 25px;
+    border-left: 4px solid #05D100; }
   #custom .form-ct {
     margin-top: 10px; }
   #custom .description {
