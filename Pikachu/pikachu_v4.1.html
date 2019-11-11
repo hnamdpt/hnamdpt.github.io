@@ -385,8 +385,10 @@
 				var ratio = game.height/background.height;
 			}else{
 				background_end = createSprite("background_end",0.5,game.width);
+
 				var ratio = game.height/background_end.height;
 				background_end.scale.setTo(1/ratio);
+				background_end.height = game.height;
 			}
 			background_end.reset(game.width/2,game.height/2);
 			// if(isEndGame){
@@ -851,7 +853,6 @@
 						var p2 = stack[1];
 						p2.body.circle.visible=true;
 						checkTwoAnimal(p1,p2);
-
 						stack = [];
 					}
 				}
@@ -1236,7 +1237,7 @@
 							createFx();
 							tutorial++;
 						});
-
+						stack= [];
 						return;
 					}
 				}
@@ -1256,6 +1257,7 @@
 							createFx();
 							tutorial++;
 						});
+						stack= [];
 						return;
 					}
 				}
@@ -1292,7 +1294,7 @@
 						createFx();
 						tutorial++;
 					});
-
+					stack= [];
 					return;
 				}
 
@@ -1328,6 +1330,7 @@
 						createFx();
 						tutorial++;
 					});
+					stack= [];
 					return;
 				}
 
@@ -1361,6 +1364,7 @@
 						createFx();
 						tutorial++;
 					});
+					stack= [];
 					return;
 				}
 
@@ -1396,6 +1400,7 @@
 						tutorial++;
 
 					});
+					stack= [];
 					return;
 				}
 
@@ -1430,6 +1435,7 @@
 						createFx();
 						tutorial++;
 					});
+					stack= [];
 					return;
 				}
 
@@ -1464,6 +1470,7 @@
 						setScore();
 						tutorial++;
 					});
+					stack= [];
 					return;
 				}
 			}
