@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta name=viewport content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="ad.size" content="width=480,height=320">
+	<meta charset="utf-8">
+	<title>Detective story</title>
+	<style type="text/css">
+		body{
+			margin: 0;
+			background: #ffffff;
+		}
+		#game{
+			width:100vw;
+			height: 100vh;
+			/*background:#ffffff;*/
+			/*Flex-Container*/
+			display: flex;
+		/*	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQMAAABKLAcXAAAAA1BMVEUjrOlGFWxaAAAAE0lEQVQ4y2MYBaNgFIyCUUBXAAAFeAABxVDVdQAAAABJRU5ErkJggg==");
+		background-repeat: repeat;*/
+	}
+	#log{
+		color:red !important;
+		text-align: center;
+	}
+	#game canvas {  
+
+		width:50vw;
+		height: 50vh;
+		position: fixed;
+		/*background:red;*/
+		}﻿
+	</style>
+</head>
+
+<body onload="gameStart()">
+	<script  src="phaser2.min.js"></script>
+	<div id = "game" ></div>
+	
+	<script type="text/javascript"> 
+		//startgame
+		function gameStart(){
+			var width_game = window.innerWidth;
+			var height_game = window.innerHeight;
+			var dpr = window.devicePixelRatio;
+			var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+			var linkDownload = "https://play.google.com/store/apps/details?id=com.abi.merge.defense";
+			var operatingsystem = "";
+			if (/android/i.test(userAgent)) {
+				operatingsystem = "Android";
+				linkDownload = "https://play.google.com/store/apps/details?id=com.abi.merge.defense";
+			}
+			if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+				operatingsystem = "iOS";
+				linkDownload ='https://play.google.com/store/apps/details?id=com.abi.merge.defense';
+			}
+			var isLandscape = false;
+			var ratio = width_game/height_game;
+			if(width_game>height_game){
+				isLandscape = true;
+			}
+			var game;
+			game =  new Phaser.Game(width_game*dpr,height_game*dpr,Phaser.CANVAS,"game");
+			var pic_1,pic_2;
+			var list_check_1 = [];
+			var list_check_2 = [];
+			var gameplay = {
+				preload(){
+
+					game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+					game.scale.pageAlignHorizontally = true;
+					game.scale.pageAlignvertically = true;
+
+					game.load.image("pic_1","pic_1.png");
+					game.load.image("pic_2","pic_2.png");
+					game.load.image("check_point","star.png");
+				},
+				create(){
+					createPicture()
+					createCheck();
+					game.scale.onSizeChange.add(function () {
+						Resize();
+					}, this);
+				},
+				update(){
+
+				}
+			}
+
+			function createPicture(){
+					if(checkIsLandscape()){
+
+							if(pic_1){
+								pic_1.destroy(true);
+							}
+							if(pic_2){
+								pic_2.destroy(true);
+							}
+							pic_1 = createSprite("pic_1",0.5,game.width/3);
+							pic_1.reset(game.width/2-pic_1.width/2,pic_1.y);
+
+							pic_2 = createSprite("pic_2",0.5,game.width/3);
+							pic_2.reset(game.width/2+pic_2.width/2,pic_2.y);
+					}else{
+						
+							if(pic_1){
+								pic_1.destroy(true);
+							}
+							if(pic_2){
+								pic_2.destroy(true);
+							}
+							pic_1 = createSprite("pic_1",0.5,game.width*0.9);
+							pic_1.reset(game.width/2,game.height/2-pic_1.height/2);
+
+							pic_2 = createSprite("pic_2",0.5,game.width*0.9);
+							pic_2.reset(game.width/2,game.height/2+pic_2.height/2);
+					}
+
+			}
+
+			function createCheck(){
+				list_check_1.push(new Check(pic_1.x+pic_1.width/4.6,pic_1.y+pic_1.height*0.17));
+				list_check_2.push(new Check(pic_2.x+pic_2.width/4.6,pic_2.y+pic_2.height*0.17));
+			}
+			function Resize(){
+					game.scale.setGameSize(window.innerWidth*dpr, window.innerHeight*dpr);
+				console.log("resize");
+				createPicture();
+			}
+			function createSprite(src,anc,tx){
+				var sprite = game.add.sprite(game.width/2,game.height/2,src);
+				sprite.anchor.setTo(anc);
+				setScaleBaseSc(sprite,tx);
+				return sprite;
+			}
+
+			function setScaleBaseSc(obj,tx){
+				var ratio = obj.width/tx;
+				obj.scale.setTo(1/ratio);
+				obj.ratio = ratio;
+			}
+			function checkIsLandscape(){
+				if(window.innerWidth>window.innerHeight){
+					return true;
+				}
+				return false;
+			}
+
+			class Check{
+				constructor(x,y){
+					this.x=x;
+					this.y=y;
+					this.create();
+					this.body.sprite.inputEnabled = true;
+					this.body.sprite.events.onInputDown.add(this.click, this);
+					
+					this.body.sprite.alpha =0;
+
+				}
+				create(){
+					this.body = game.add.sprite(this.x,this.y,"");
+					if(checkIsLandscape()){
+						this.body.sprite = createSprite("check_point",0.5,game.width/40);
+					}else{
+
+					}
+					this.body.addChild(this.body.sprite);
+					this.body.sprite.reset(0,0);
+				}
+				click(){
+					console.log("click");
+					var vt = list_check_1.indexOf(this);
+					if(vt!=-1){
+						this.body.sprite.alpha=1;
+						list_check_2[vt].body.sprite.alpha=1;
+					}else{
+						vt = list_check_2.indexOf(this);
+						this.body.sprite.alpha=1;
+						list_check_1[vt].body.sprite.alpha=1;
+					}
+				}	
+			}
+
+
+			game.state.add("gameplay",gameplay);
+			game.state.start("gameplay",gameplay);
+		}
+	</script>
+</body>
+</html>
