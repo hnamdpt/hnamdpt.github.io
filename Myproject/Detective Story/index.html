@@ -63,6 +63,7 @@
 			var game;
 			game =  new Phaser.Game(width_game*dpr,height_game*dpr,Phaser.CANVAS,"game");
 			var pic_1,pic_2;
+			var background;
 			var list_check_1 = [];
 			var list_check_2 = [];
 			var gameplay = {
@@ -72,11 +73,13 @@
 					game.scale.pageAlignHorizontally = true;
 					game.scale.pageAlignvertically = true;
 
-					game.load.image("pic_1","pic_1.png");
-					game.load.image("pic_2","pic_2.png");
+					game.load.image("pic_1","8.png");
+					game.load.image("pic_2","8.png");
+					game.load.image("background","background.png")
 					game.load.image("check_point","star.png");
 				},
 				create(){
+					createBackground();
 					createPicture()
 					createCheck();
 					game.scale.onSizeChange.add(function () {
@@ -87,6 +90,10 @@
 
 				}
 			}
+			function createBackground(){
+				background = createSprite("background",0.5,game.width);
+			}
+
 
 			function createPicture(){
 					if(checkIsLandscape()){
@@ -97,11 +104,13 @@
 							if(pic_2){
 								pic_2.destroy(true);
 							}
-							pic_1 = createSprite("pic_1",0.5,game.width/3);
-							pic_1.reset(game.width/2-pic_1.width/2,pic_1.y);
+							pic_1 = createSprite("pic_1",0.5,game.width/2.5);
+							pic_1.reset(game.width/2-pic_1.width/1.9,pic_1.y);
+							pic_1.height = pic_1.height*1.2;
 
-							pic_2 = createSprite("pic_2",0.5,game.width/3);
-							pic_2.reset(game.width/2+pic_2.width/2,pic_2.y);
+							pic_2 = createSprite("pic_2",0.5,game.width/2.5);
+							pic_2.reset(game.width/2+pic_2.width/1.9,pic_2.y);
+							pic_2.height = pic_2.height*1.2;
 					}else{
 						
 							if(pic_1){
