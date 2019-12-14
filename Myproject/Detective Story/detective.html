@@ -447,7 +447,7 @@
 				isEndGame = true;
 			}
 
-
+			var isCreatePanelEndgame=false;
 			function createEndpanel(){
 				if(pic_3){
 					pic_3.destroy(true);
@@ -462,7 +462,12 @@
 					pic_3.reset(-pic_3.width,game.height/2);
 					pic_4  = createSprite("pic_4",0.5,game.width/2.5);
 					pic_4.reset(game.width+pic_4.width,game.height/2);
-
+					if(isCreatePanelEndgame){
+						pic_3.reset(game.width/2-pic_3.width/2,game.height/2);
+					}
+					if(isCreatePanelEndgame){
+						pic_4.reset(game.width/2+pic_4.width/2,game.height/2);
+					}
 					pic_3.tween = game.add.tween(pic_3).to({x:game.width/2-pic_3.width/2},500,"Linear",true);
 					pic_4.tween = game.add.tween(pic_4).to({x:game.width/2+pic_4.width/2},500,"Linear",true);
 
@@ -472,6 +477,9 @@
 
 
 					text_endgame = createSprite("text_endgame",0.5,game.width*0.7);
+					if(isCreatePanelEndgame){
+						text_endgame.reset(game.width/2,game.height*0.4);
+					}
 					text_endgame.tween = game.add.tween(text_endgame).to({y:game.height*0.4},500,"Linear",true);
 
 					btn_continue = game.add.button(game.width/2,game.height/2,"btn_continue");
@@ -506,6 +514,12 @@
 
 					pic_4  = createSprite("pic_4",0.5,game.width*0.9);
 					pic_4.reset(game.width/2,game.height+pic_4.height);
+					if(isCreatePanelEndgame){
+						pic_3.reset(game.width/2,game.height/2-pic_3.height/2);
+					}
+					if(isCreatePanelEndgame){
+						pic_4.reset(game.width/2,game.height/2+pic_4.height/2);
+					}
 
 					pic_3.tween = game.add.tween(pic_3).to({y:game.height/2-pic_3.height/2},500,"Linear",true);
 					pic_4.tween = game.add.tween(pic_4).to({y:game.height/2+pic_4.height/2},500,"Linear",true);
@@ -517,8 +531,11 @@
 
 					text_endgame = createSprite("text_endgame",0.5,game.width*0.9);
 					text_endgame.reset(game.width/2,game.height*0.3);
+				
+					if(isCreatePanelEndgame){
+						text_endgame.reset(game.width/2,game.height*0.5);
+					}
 					text_endgame.tween = game.add.tween(text_endgame).to({y:game.height*0.5},500,"Linear",true);
-
 					btn_continue = game.add.button(game.width/2,game.height/2,"btn_continue");
 					btn_continue.anchor.setTo(0.5);
 					btn_continue.ratio = btn_continue.width/(game.width/3);
@@ -546,6 +563,7 @@
 					hand.reset(btn_continue.x+hand.width/2,btn_continue.y+hand.height/2);
 					hand.tween = game.add.tween(hand).to({x:hand.x+hand.width/20,height:hand.height+hand.height/10},500,"Linear",true,0,-1,true);
 				}
+				isCreatePanelEndgame=true;
 			}
 
 			game.state.add("gameplay",gameplay);
