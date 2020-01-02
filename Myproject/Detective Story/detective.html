@@ -715,16 +715,11 @@
 				}
 			}
 			function createSprite(src,anc,tx){
-				var sprite = game.add.sprite(game.width/2,game.height/2,src);
-				sprite.anchor.setTo(anc);
-				setScaleBaseSc(sprite,tx);
-				return sprite;
+				var _g0 = game.add.sprite(game.width/2,game.height/2,src); _g0.anchor.setTo(anc); setScaleBaseSc(_g0,tx); return _g0;
 			}
 
 			function setScaleBaseSc(obj,tx){
-				var ratio = obj.width/tx;
-				obj.scale.setTo(1/ratio);
-				obj.ratio = ratio;
+				var _g0 = obj.width/tx; obj.scale.setTo(1/_g0); obj.ratio = _g0;
 			}
 			function checkIsLandscape(){
 				if(window.innerWidth>window.innerHeight){
