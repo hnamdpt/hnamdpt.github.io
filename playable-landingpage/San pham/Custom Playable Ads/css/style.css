@@ -1,0 +1,56 @@
+body {
+  background: #E0E0E0; }
+
+#header {
+  height: 50px;
+  background: url("../public/home-banner.jpg"); }
+  #header .header-logo {
+    line-height: 50px; }
+    #header .header-logo img {
+      width: 150px; }
+
+.phone {
+  margin-top: 30px;
+  width: 350px;
+  height: 700px;
+  position: relative; }
+  .phone img {
+    width: 100%; }
+  .phone .game {
+    position: absolute;
+    top: 11.5%;
+    left: 6.6%;
+    width: 81.5%;
+    height: 72%;
+    background: #009BF4; }
+
+#custom {
+  padding: 10px;
+  /* height:100%; */
+  border: 1px solid #8B8B8B;
+  margin-top: 30px; }
+  #custom .type-file {
+    display: none; }
+  #custom .heading {
+    font-size: 20px;
+    color: #004B0B;
+    display: block;
+    width: 100%;
+    padding-left: 10px;
+    height: 25px;
+    line-height: 25px;
+    border-left: 4px solid #05D100; }
+  #custom .form-ct {
+    margin-top: 10px; }
+  #custom .description {
+    margin-bottom: 10px;
+    display: block;
+    color: #323232; }
+
+#reset {
+  text-align: center;
+  margin: auto;
+  width: 100px;
+  display: block; }
+
+/*# sourceMappingURL=style.css.map */
